@@ -29,7 +29,7 @@
     <%= f.label :"Picture" %><br />
     <%= f.file_field :photo %>
   </div>
-  <% if params[:action] == "new" %>
+  <% if params[:action] == "new" || "index" %>
   <div class="field">
     <%= f.label :"Email" %><br />
     <%= f.text_field :email %>
