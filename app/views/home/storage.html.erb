@@ -1,0 +1,13 @@
+<p>
+<%= @user.name %>'s
+  <b>Storage:</b><br />
+  <% @storage.each do |storage| %>
+	<%=h storage.title %>
+	<%=h storage.description %>
+	ID:<%=h storage.user_id %>
+	<%=h link_to('Items',storage.file.url()) %>
+	<%=h link_to('Edit', edit_storage_path(storage)) %>
+	<%= link_to 'Delete', storage, :confirm => 'Are you sure you want to permanantley delete this data?', :method => :delete %>
+  <br />
+  <% end %>
+</p>

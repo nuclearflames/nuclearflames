@@ -1,0 +1,24 @@
+<div id="menu">
+	<ul>
+		<li>
+		<% if session[:id] == nil %>
+			<%= link_to('Login', '../logons/logon') %>
+			<br />
+			<%= link_to('Signup', '../users/new') %>
+		<% end %>
+		<br />
+		<li>
+		<% if session[:id] != nil %>
+			<%= link_to('My Profile', '../home') %>
+			<br />
+			<%= link_to('Logoff', '../logons/logoff') %>
+		<% end %>
+		</li>
+		<li>
+			<%= notice %><br />
+			<% if session[:registration_attempt] != nil %>
+				<%= link_to('Click Here to resend account activation email', '../../home/resendEmail') %>
+			<% end %>
+		</li>
+	</ul>
+</div>

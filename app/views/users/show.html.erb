@@ -1,0 +1,28 @@
+
+
+<p>
+  <b>ID:</b>
+  <%=h @user.id %>
+</p><p>
+  <b>Name:</b>
+  <%=h @user.name %>
+</p>
+<p>
+  <b>Email:</b>
+  <%=h @user.email %>
+</p>
+<p>
+  <b>Status:</b>
+  <%=h @user.status %>
+</p>
+<p>
+  <b>Rank:</b>
+  <%=h @user.rank %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%=h image_tag @user.photo.url(:thumb) %>
+</p>
+
+<%= link_to 'Home', :controller => 'home', :action => 'index' %>

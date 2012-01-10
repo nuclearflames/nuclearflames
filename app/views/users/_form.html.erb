@@ -1,0 +1,58 @@
+<%= form_for(@user, :html => { :multipart => true }) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :"First name" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :"Surname" %><br />
+    <%= f.text_field :surname %>
+  </div>
+  <div class="field">
+    <%= f.label :"Password" %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :"Confirm Password" %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :"Picture" %><br />
+    <%= f.file_field :photo %>
+  </div>
+  <% if params[:action] == "new" %>
+  <div class="field">
+    <%= f.label :"Email" %><br />
+    <%= f.text_field :email %>
+  </div>  
+  <div class="field">
+    <%= f.label :"Confirm Email" %><br />
+    <%= f.text_field :email_confirmation %>
+  </div>
+  <% end %>
+  <% if session[:status] == "Administrator" %>
+  <div class="field">
+    <%= f.label :"Rank" %><br />
+    <%= f.text_field :rank %>
+  </div>
+  <div class="field">
+	<select name="user[status]">
+	  <option></option>
+	  <option value="Administrator">Administrator</option>
+	  <option value="User">User</option>
+	</select>
+  </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

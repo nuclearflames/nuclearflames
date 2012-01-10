@@ -1,0 +1,11 @@
+<h1>To logon please input your details here...</h1>
+<% form_tag :action => 'logon' do %>
+	Email:<%= text_field_tag(:email, params[:email]) %> <br />
+	Password:<%= password_field_tag(:password, params[:password]) %><br />
+	<%= submit_tag 'Login' %>
+<% end %> 
+<p>
+<%= link_to('Signup', '../users/new') %>
+<br />
+<%= notice %>
+</p>

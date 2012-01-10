@@ -1,0 +1,27 @@
+<span id="head">
+<% if user.status == "Administrator" %>
+<br />ID: <%= user.id %>
+<br />Status: <%= user.status %>
+<br />Rank: <%= user.rank %>
+<br />Created: <%= user.created_at %>
+<% end %>
+<br />
+<br />First Name: <%= user.name %>
+<br />Surname: <%= user.surname %>
+<br /><%= link_to 'Edit your profile', :action => "edit" %>
+<br />
+
+<%= link_to('Upload a file', 'storages/new') %>
+<br />
+<%= link_to('View uploaded files', 'home/storage') %>
+
+<br />
+<% if session[:status] == 'Administrator' %>
+<%= link_to "Create a new profile", :controller => 'users', :action => 'new' %><br />
+<%= link_to "View all profiles", :controller => 'users', :action => 'index' %><br />
+<%= link_to "View all Stored data", :controller => 'storages', :action => 'index' %>
+<% end %>
+
+
+
+</span>

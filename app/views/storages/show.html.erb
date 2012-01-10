@@ -1,0 +1,14 @@
+<p>
+  <b>User:</b><br />
+  <% if @user.status == "Administrator" %>
+  Object ID: <%= @storage.id %><br />
+  Owner ID: <%= @storage.user_id %><br />
+  <% end %>
+  Title: <%=h @storage.title %><br />
+  Description: <%=h @storage.description %><br />
+  Download: <%=h link_to('Items',@storage.file.url()) %><br />
+</p>
+
+
+<%= link_to 'Edit', edit_storage_path(@storage) %> |
+<%= link_to 'Home', :controller => 'home', :action => 'home' %>

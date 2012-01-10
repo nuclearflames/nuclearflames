@@ -1,0 +1,25 @@
+<%= form_for(@storage, :html => { :multipart => true }) do |f| %>
+  <% if @storage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@storage.errors.count, "error") %> prohibited this storage from being saved:</h2>
+
+      <ul>
+      <% @storage.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Title %>:
+    <%= f.text_field :title %><br />
+    <%= f.label :Description %>:
+    <%= f.text_field :description %><br />
+    <%= f.label :File %>:
+    <%= f.file_field :file %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
