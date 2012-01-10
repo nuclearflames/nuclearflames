@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
- skip_before_filter :authorizeUser, :only => ['index']
- skip_before_filter :authorizeAdmin, :only => ['index']
+ skip_before_filter :authorizeUser, :only => ['index', 'resendEmail']
+ skip_before_filter :authorizeAdmin, :only => ['index', 'resendEmail']
   def index
   end
   
