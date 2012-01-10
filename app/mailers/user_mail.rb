@@ -1,6 +1,6 @@
 class UserMail < ActionMailer::Base
-	EMAIL_VERIFICATION_URL = 'http:localhost:3000/verify?code='
-	EMAIL_VERIFICATION_URLA = 'http:localhost:3000/verifyA?code='
+	EMAIL_VERIFICATION_URL = 'http://nuclearflames.herokuapp.com/verify?code='
+	EMAIL_VERIFICATION_URLA = 'http://nuclearflames.herokuapp.com/verifyA?code='
 	
 	default :from => "nuclearflamesweb-email@yahoo.com"  
 	

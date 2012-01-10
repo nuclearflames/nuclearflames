@@ -14,11 +14,11 @@ protect_from_forgery
 		if code_components.length == 2
 			@user = User.find(code_components[0])
 			if @user and @user.verify_id_digest(code_components[1])
-				@user.status = USER
+				@user.status = "User"
 				@user.rank = 0
 				@user.save
 				respond_to do |format|
-					flash[:notice] = 'Welcome! You are valid user, you can now logon.'
+					flash[:notice] = 'Welcome! You are a valid user, you can now logon.'
 					format.html {redirect_to(:controller => 'home', :action => 'index')}
 				end
 			end
