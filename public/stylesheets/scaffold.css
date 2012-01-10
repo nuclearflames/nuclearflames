@@ -158,3 +158,13 @@ div.field, div.actions {
 	width: 400px;
 	
 }
+
+#disclaimer {
+	
+	position:absolute;
+	
+	left: 5px;
+	
+	top: 830px;
+	
+}
