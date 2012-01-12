@@ -16,10 +16,10 @@
 <%= link_to('View uploaded files', 'home/storage') %>
 
 <br />
-<% if session[:status] == 'Administrator' %>
+<% if user.status == 'Administrator' %>
 <%= link_to "Create a new profile", :controller => 'users', :action => 'new' %><br />
 <%= link_to "View all profiles", :controller => 'users', :action => 'index' %><br />
-<%= link_to "View all Stored data", :controller => 'storages', :action => 'index' %>
+<%= link_to "View all Stored data", :controller => 'storages', :action => 'index' %><br />
 <% end %>
 
 

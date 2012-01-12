@@ -39,17 +39,13 @@
     <%= f.text_field :email_confirmation %>
   </div>
   <% end %>
-  <% if session[:status] == "Administrator" %>
+  <% if user.status == "Administrator" %>
   <div class="field">
     <%= f.label :"Rank" %><br />
     <%= f.text_field :rank %>
   </div>
   <div class="field">
-	<select name="user[status]">
-	  <option></option>
-	  <option value="Administrator">Administrator</option>
-	  <option value="User">User</option>
-	</select>
+	<%= select_tag(:status, options_for_select([['Administrator', 'Administrator'], ['User', 'User']])) %>
   </div>
   <% end %>
   <div class="actions">

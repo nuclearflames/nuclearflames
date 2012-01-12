@@ -2,11 +2,15 @@
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>ID</th>
+    <th>Surname</th>
+    <th>Firstname</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
+    <td><%= user.id %></td>
+    <td><%= user.surname %></td>
     <td><%= user.name %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
@@ -17,4 +21,4 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User(Without email activation)', new_user_path %>

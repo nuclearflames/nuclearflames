@@ -123,6 +123,8 @@ div.field, div.actions {
 
 	position:absolute;
 	
+	background-color: #000000;
+	
 	right: 5px;
 	
 }
@@ -142,8 +144,6 @@ div.field, div.actions {
 	left: 40%;
 	
 	background-color: red;
-	
-	padding: 5px;
 	
 	color :white;
 	
