@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 	:url  => "/images/userimages/:id/:style/:basename.:extension",
 	:path => ":rails_root/public/images/userimages/:id/:style/:basename.:extension"
 	
-	validates_attachment_presence :photo
+	validates_attachment_presence :photo, :message => "is missing"
 	validates_attachment_size :photo, :less_than => 1.megabytes
 	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
     

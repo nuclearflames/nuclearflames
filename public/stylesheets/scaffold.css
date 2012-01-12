@@ -167,4 +167,6 @@ div.field, div.actions {
 	
 	top: 830px;
 	
+    z-index: -1;
+	
 }

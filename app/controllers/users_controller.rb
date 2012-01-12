@@ -15,6 +15,9 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new	  
+    if session[:id] 
+	    @user1 = User.find(session[:id])
+    end
     @user = User.new
 
     respond_to do |format|
