@@ -39,7 +39,7 @@
     <%= f.text_field :email_confirmation %>
   </div>
   <% end %>
-  <% if session[:id] && user1.status == "Administrator" %>
+  <% if session[:id] && @user1.status == "Administrator" %>
   <div class="field">
     <%= f.label :"Rank" %><br />
     <%= f.text_field :rank %>

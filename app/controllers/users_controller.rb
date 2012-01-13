@@ -91,12 +91,17 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
+    if @user.id == session[:id]
+	redirect_to(:controller => 'users', :action => 'index')
+	flash[:notice] = 'Can\'t Delete Yourself!!.'
+    else
     @user.destroy
 
     respond_to do |format|
 	UserMail.destroyUser_notification(@user).deliver
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
+    end
     end
   end
 end

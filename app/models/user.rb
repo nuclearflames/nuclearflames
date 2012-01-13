@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_many :storages
+	has_many :storages, :dependent => :destroy
 	validates_presence_of :name, :surname, :password, :password_confirmation, :email, :email_confirmation,  :on => :create
 	validates_presence_of :name, :surname, :email,  :on => :update
 	validates_uniqueness_of :email
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 	:path => ":rails_root/public/images/userimages/:id/:style/:basename.:extension"
 	
 	validates_attachment_presence :photo, :message => "is missing"
-	validates_attachment_size :photo, :less_than => 1.megabytes
+	validates_attachment_size :photo, :less_than => 1.megabytes, :message => "is larger than 1MB"
 	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
     
 	def create_digest(message)
