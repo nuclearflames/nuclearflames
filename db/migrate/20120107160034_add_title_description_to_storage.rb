@@ -1,7 +1,7 @@
 class AddTitleDescriptionToStorage < ActiveRecord::Migration
   def self.up
-    add_column :storages, :title, :string
-    add_column :storages, :description, :string
+    add_column :storages, :title, :string, :null => false
+    add_column :storages, :description, :string, :null => false
   end
 
   def self.down

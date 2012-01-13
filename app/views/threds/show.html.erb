@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @thred.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @thred.description %>
+</p>
+
+<p>
+  <b>Topic:</b>
+  <%= @thred.topic_id %>
+</p>
+
+<p>
+  <b>Thread owner:</b>
+  <%= @thred.thread_owner %>
+</p>
+
+
+<%= link_to 'Edit', edit_thred_path(@thred) %> |
+<%= link_to 'Back', threds_path %>

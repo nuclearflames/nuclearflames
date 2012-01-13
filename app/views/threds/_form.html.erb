@@ -1,0 +1,33 @@
+<%= form_for(@thred) do |f| %>
+  <% if @thred.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@thred.errors.count, "error") %> prohibited this thred from being saved:</h2>
+
+      <ul>
+      <% @thred.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :topic_id %><br />
+    <%= f.text_field :topic_id %>
+  </div>
+  <div class="field">
+    <%= f.label :thread_owner %><br />
+    <%= f.text_field :thread_owner %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

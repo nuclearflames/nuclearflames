@@ -1,0 +1,29 @@
+<h1>Listing threds</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Topic</th>
+    <th>Thread owner</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @threds.each do |thred| %>
+  <tr>
+    <td><%= thred.title %></td>
+    <td><%= thred.description %></td>
+    <td><%= thred.topic_id %></td>
+    <td><%= thred.thread_owner %></td>
+    <td><%= link_to 'Show', thred %></td>
+    <td><%= link_to 'Edit', edit_thred_path(thred) %></td>
+    <td><%= link_to 'Destroy', thred, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Thred', new_thred_path %>

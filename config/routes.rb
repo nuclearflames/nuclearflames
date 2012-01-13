@@ -1,4 +1,10 @@
 Nuclearflames::Application.routes.draw do
+  resources :threds
+
+  resources :posts
+
+  resources :topics
+
   resources :storages
 
   get "logons/logon"
