@@ -7,7 +7,10 @@ class HomeController < ApplicationController
   def home
   end
   
-  def edit
+  def edit	  
+    if session[:id] 
+	    @user1 = User.find(session[:id])
+    end
     @user = User.find(session[:id])
 	unless session[:edit] == 'true'
 		redirect_to(:controller => 'logons', :action => 'logonEdit')
