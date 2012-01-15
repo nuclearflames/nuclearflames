@@ -1,3 +1,4 @@
+<span>Create a new Thread:</span>
 <%= form_for(@thred) do |f| %>
   <% if @thred.errors.any? %>
     <div id="error_explanation">
@@ -17,17 +18,9 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description, :size => "30x10" %>
   </div>
-  <div class="field">
-    <%= f.label :topic_id %><br />
-    <%= f.text_field :topic_id %>
-  </div>
-  <div class="field">
-    <%= f.label :thread_owner %><br />
-    <%= f.text_field :thread_owner %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+<div class="actions">
+    <%= f.submit "Create Thread" %>
   </div>
 <% end %>

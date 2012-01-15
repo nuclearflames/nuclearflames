@@ -1,20 +1,51 @@
-<p id="notice"><%= notice %></p>
 
+<h1>
+About <%= @topic.title %>:
+</h1>
+
+<table id="form">
+	<tr>
+		<th>
+		Title:
+		</th>
+		<th>
+		Description:
+		</th>
+		<th>
+		Options:
+		</th>
+	</tr>
+<% @threads.each do |threads| %>
+	<tr>
+		<td>
+		<%=h threads.title %>
+		</td>
+		<td>
+		<%=h threads.description %>
+		</td>
+		<td>
+		<%=h link_to 'View', thred_path(threads.id) %>
+		</td>
+	</tr>
+<% end %>
+</table>
+
+<div id="newPost">
+<% if session[:id] %>
+<%= render 'threds/form' %>
+<% end %>
+</div>
+<div id="description">
 <p>
-  <b>Title:</b>
-  <%= @topic.title %>
+	Title:
+	<%= @topic.title %>
+	<br />
+	Description:
+	<%= @topic.description %>
+	<br />
+	Owner ID:
+	<%= link_to @topic.owner_id, user_path(@topic.owner_id) %>
 </p>
-
-<p>
-  <b>Description:</b>
-  <%= @topic.description %>
-</p>
-
-<p>
-  <b>Created by:</b>
-  <%= @topic.created_by %>
-</p>
-
-
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
+<p>Edit this topics details: <%= link_to 'Edit', edit_topic_path(@topic) %>
+<br />Or go back: <%= link_to 'Back', :action => "topicsList" %>
+</div>

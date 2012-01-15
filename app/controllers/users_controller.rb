@@ -37,6 +37,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+    if session[:id] 
+	    @user1 = User.find(session[:id])
+    end
     @user = User.new(params[:user])
     @user.status = "Inactive" unless @user.status
     
@@ -54,11 +57,11 @@ class UsersController < ApplicationController
 		format.xml  { render :xml => @user, :status => :created, :location => @user }
 	elsif @user.status == "Administrator"
 		flash[:notice] = 'Administrator was successfully created.'
-		format.html { redirect_to(:controller => 'home', :action => 'index' )}
+		format.html { redirect_to(:controller => 'home', :action => 'home' )}
 		format.xml  { render :xml => @user, :status => :created, :location => @user }
 	elsif @user.status == "User"
 		flash[:notice] = 'User was successfully created.'
-		format.html { redirect_to(:controller => 'home', :action => 'index' )}
+		format.html { redirect_to(:controller => 'home', :action => 'home' )}
 		format.xml  { render :xml => @user, :status => :created, :location => @user }
 	end
       else

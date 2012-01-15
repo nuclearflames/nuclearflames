@@ -4,7 +4,7 @@
   <tr>
     <th>Title</th>
     <th>Description</th>
-    <th>Created by</th>
+    <th>Owner ID</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,7 +14,7 @@
   <tr>
     <td><%= post.title %></td>
     <td><%= post.description %></td>
-    <td><%= post.created_by %></td>
+    <td><%= post.owner_id %></td>
     <td><%= link_to 'Show', post %></td>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
     <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>

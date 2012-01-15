@@ -1,3 +1,6 @@
+<span>
+Make a new post:
+</span>
 <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -17,11 +20,7 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :created_by %><br />
-    <%= f.text_field :created_by %>
+    <%= f.text_area :description, :size => "30x10" %>
   </div>
   <div class="actions">
     <%= f.submit %>

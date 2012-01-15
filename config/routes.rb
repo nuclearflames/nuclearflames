@@ -78,6 +78,7 @@ Nuclearflames::Application.routes.draw do
    match '/home/storage' => 'home#storage'
    match '/home/edit' => 'home#edit'
    match '/home/editFile' => 'home#editFile'
+   match 'topicsList' => 'topics#topicsList'
    
   # See how all your routes lay out with "rake routes"
 

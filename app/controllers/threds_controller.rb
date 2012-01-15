@@ -1,4 +1,6 @@
 class ThredsController < ApplicationController
+	
+	skip_before_filter :authorizeUser, :only => ['show', 'edit']
   # GET /threds
   # GET /threds.xml
   def index
@@ -13,7 +15,10 @@ class ThredsController < ApplicationController
   # GET /threds/1
   # GET /threds/1.xml
   def show
+    @post = Post.new
     @thred = Thred.find(params[:id])
+    @posts = @thred.posts
+    session[:threds_id] = params[:id]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,10 +46,13 @@ class ThredsController < ApplicationController
   # POST /threds.xml
   def create
     @thred = Thred.new(params[:thred])
-
+    @thred.owner_id = session[:id]
+    @thred.topic_id = session[:topic_id]
+    
     respond_to do |format|
       if @thred.save
-        format.html { redirect_to(@thred, :notice => 'Thred was successfully created.') }
+        format.html { redirect_to(topic_path(@thred.topic_id)) }
+	flash[:notice] = 'Thread was successfully created.'
         format.xml  { render :xml => @thred, :status => :created, :location => @thred }
       else
         format.html { render :action => "new" }
@@ -60,7 +68,7 @@ class ThredsController < ApplicationController
 
     respond_to do |format|
       if @thred.update_attributes(params[:thred])
-        format.html { redirect_to(@thred, :notice => 'Thred was successfully updated.') }
+        format.html { redirect_to(@thred, :notice => 'Thread was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

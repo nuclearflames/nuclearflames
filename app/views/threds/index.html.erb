@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Thread ID</th>
     <th>Title</th>
     <th>Description</th>
     <th>Topic</th>
@@ -13,10 +14,11 @@
 
 <% @threds.each do |thred| %>
   <tr>
+    <td><%= thred.id %></td>
     <td><%= thred.title %></td>
     <td><%= thred.description %></td>
     <td><%= thred.topic_id %></td>
-    <td><%= thred.thread_owner %></td>
+    <td><%= thred.owner_id %></td>
     <td><%= link_to 'Show', thred %></td>
     <td><%= link_to 'Edit', edit_thred_path(thred) %></td>
     <td><%= link_to 'Destroy', thred, :confirm => 'Are you sure?', :method => :delete %></td>

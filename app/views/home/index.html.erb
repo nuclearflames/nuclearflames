@@ -12,7 +12,9 @@
 			<%= link_to('My Profile', '../home') %>
 			<br />
 			<%= link_to('Logoff', '../logons/logoff') %>
-		<% end %>
+			<% end %>
+		<br />
+		<%= link_to('Forum', :controller => "topics", :action => "topicsList") %>
 		</li>
 		<li>
 			<%= notice %><br />

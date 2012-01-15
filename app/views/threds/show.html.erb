@@ -1,25 +1,56 @@
-<p id="notice"><%= notice %></p>
+<h1>
+Posts about <%=h @thred.title %>:
+</h1>
+<table id ="form">
+<% @posts.each do |posts| %>
+	<tr>
+		<th width="30">
+		Title:
+		</th>
+		<th>
+		<%=h posts.title %>
+		</th>
+		<th width="30">
+		Options
+		</th>
+	</tr>
+	<tr>
+		<th>
+		Description:
+		</th>
+		<td>
+		<%=h posts.description %>
+		</td>
+		<td>
+		<%=h link_to 'View', post_path(posts.id) %>
+		</td>
+	<tr id="spacer">
+	</tr>
+<% end %>
+</table>
 
+<div id="newPost">
+<% if session[:id] %>
+<%= render 'posts/form' %>
+<% end %>
+</div>
+<div id="description">
 <p>
   <b>Title:</b>
   <%= @thred.title %>
-</p>
-
-<p>
+  <br />
   <b>Description:</b>
   <%= @thred.description %>
-</p>
-
-<p>
-  <b>Topic:</b>
+  <br />
+  <b>Topic ID:</b>
   <%= @thred.topic_id %>
-</p>
-
-<p>
+  <br />
   <b>Thread owner:</b>
-  <%= @thred.thread_owner %>
-</p>
+  <%= link_to @thred.owner_id, user_path(@thred.owner_id) %>
 
+</p>
 
 <%= link_to 'Edit', edit_thred_path(@thred) %> |
-<%= link_to 'Back', threds_path %>
+<%= link_to 'Back', topic_path(@thred.topic_id) %>
+
+</div>

@@ -1,7 +1,10 @@
 class TopicsController < ApplicationController
+	
+	skip_before_filter :authorizeUser, :only => ['show', 'topicsList']
   # GET /topics
   # GET /topics.xml
   def index
+    @topic = Topic.new
     @topics = Topic.all
 
     respond_to do |format|
@@ -13,8 +16,11 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.xml
   def show
+    @thred = Thred.new
     @topic = Topic.find(params[:id])
-
+    @threads = @topic.threds
+    session[:topic_id] = params[:id]
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @topic }
@@ -41,10 +47,11 @@ class TopicsController < ApplicationController
   # POST /topics.xml
   def create
     @topic = Topic.new(params[:topic])
-
+	@topic.owner_id = session[:id]
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to(@topic, :notice => 'Topic was successfully created.') }
+        format.html { redirect_to(:action => "topicsList") }
+	flash[:notice] = 'Topic was successfully created.'
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
         format.html { render :action => "new" }
@@ -60,7 +67,8 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
-        format.html { redirect_to(@topic, :notice => 'Topic was successfully updated.') }
+        format.html { redirect_to(:action => "topicsList") }
+	flash[:notice] = 'Topic was successfully updated.'
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,8 +84,16 @@ class TopicsController < ApplicationController
     @topic.destroy
 
     respond_to do |format|
-      format.html { redirect_to(topics_url) }
+      format.html { redirect_to(:action => "topicsList") }
       format.xml  { head :ok }
     end
+  end
+  
+  def topicsList
+    @thred = Thred.new
+    @topic = Topic.new
+    @topics = Topic.all
+    @threads = @topic.threds
+    session[:topic_id] = params[:id]	
   end
 end

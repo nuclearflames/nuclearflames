@@ -1,4 +1,4 @@
-<h1>Viewing topics</h1>
+<h1>Topic List:</h1>
 <table id="form">
 <tr>
 	<th>
@@ -26,6 +26,9 @@
 <% end %>
 
 </table>
-
 <br />
-<%= link_to 'Create a new website Topic', new_topic_path %>
+<div id="newPost">
+<% if session[:id] %>
+<%= render 'form' %>
+<% end %>
+</div>

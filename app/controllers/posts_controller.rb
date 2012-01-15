@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+	
+		skip_before_filter :authorizeUser, :only => ['show', 'edit']
   # GET /posts
   # GET /posts.xml
   def index
@@ -41,10 +43,13 @@ class PostsController < ApplicationController
   # POST /posts.xml
   def create
     @post = Post.new(params[:post])
+    @post.owner_id = session[:id]
+    @post.thred_id = session[:threds_id]
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
+        format.html { redirect_to(thred_path(@post.thred_id)) }
+	flash[:notice] = 'Post was successfully created.'
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
         format.html { render :action => "new" }

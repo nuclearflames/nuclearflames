@@ -82,23 +82,6 @@ div.field, div.actions {
 	
 }
 
-
-#menu {
-	
-	position: absolute;
-	
-	z-index: 0;
-	
-	left: 75px;
-	
-	top: 100px;
-	
-	font-size: 30px;
-	
-	width: 200px;
-	
-}
-
 #header {
 	
 	position:fixed;
@@ -116,6 +99,23 @@ div.field, div.actions {
 	height: 20px;
 	
 	z-index: 10;
+	
+}
+
+
+#menu {
+	
+	position: absolute;
+	
+	z-index: 0;
+	
+	left: 100px;
+	
+	top: 50px;
+	
+	font-size: 30px;
+	
+	width: 200px;
 	
 }
 
@@ -153,9 +153,21 @@ div.field, div.actions {
 	
 	position:absolute;
 	
-	left: 150px;
+	top: 5%;
 	
-	width: 400px;
+	left: 10%;
+	
+	height: 90%;
+	
+	width: 85%;
+	
+	border: solid;
+	
+	border-width: 1px;
+	
+	border-style: outset;
+	
+	background-image: url("../images/blackGradBG.png");
 	
 }
 
@@ -165,8 +177,69 @@ div.field, div.actions {
 	
 	left: 5px;
 	
-	top: 830px;
+	top: 820px;
 	
     z-index: -1;
 	
+}
+
+#form {
+	
+	border: solid;
+	
+	width: 350px;
+	
+}
+#form {
+	
+	position: absolute;
+	
+	width: 90%;
+	
+	background-color: black;
+	
+	left: 5%;
+	
+}
+
+#form th {
+	
+	text-decoration: underline;
+	
+}
+
+#form th, td, tr  {
+	
+	border: solid;
+	
+	border-color: green;
+	
+	border-width: 1px;
+	
+}
+
+#description {
+	
+	position:absolute;
+	
+	right: 5px;
+	
+	top: 400px;
+
+}
+
+#newPost {
+	
+	position:absolute;
+	
+	left: 5px;
+	
+	top: 350px;
+
+}
+
+#spacer {
+	
+	height: 10px;
+		
 }
