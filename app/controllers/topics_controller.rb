@@ -1,6 +1,5 @@
 class TopicsController < ApplicationController
-	
-	skip_before_filter :authorizeUser, :only => ['show', 'topicsList']
+skip_before_filter :authorizeUser, :only => ['show', 'topicsList']
   # GET /topics
   # GET /topics.xml
   def index

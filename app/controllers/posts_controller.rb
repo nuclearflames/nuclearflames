@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-	
-		skip_before_filter :authorizeUser, :only => ['show', 'edit']
+skip_before_filter :authorizeUser, :only => ['show']
   # GET /posts
   # GET /posts.xml
   def index

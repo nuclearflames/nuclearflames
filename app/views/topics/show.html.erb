@@ -2,11 +2,14 @@
 <h1>
 About <%= @topic.title %>:
 </h1>
-
+<p>
+	<b>Thread description:</b>
+	<%= @topic.description %>
+</p>
 <table id="form">
 	<tr>
-		<th>
-		Title:
+		<th width="50px">
+		ID:
 		</th>
 		<th>
 		Description:
@@ -18,13 +21,16 @@ About <%= @topic.title %>:
 <% @threads.each do |threads| %>
 	<tr>
 		<td>
-		<%=h threads.title %>
+		<%= threads.id %>
 		</td>
 		<td>
+		<%=h link_to threads.title, thred_path(threads.id) %><br />
 		<%=h threads.description %>
 		</td>
-		<td>
-		<%=h link_to 'View', thred_path(threads.id) %>
+		<td width="100px">
+		<%= link_to 'Edit Thread', edit_thred_path(threads) %><br />
+		<%= link_to 'Created By', user_path(threads.owner_id) %>
+		<%=  %>
 		</td>
 	</tr>
 <% end %>
@@ -39,10 +45,6 @@ About <%= @topic.title %>:
 <p>
 	Title:
 	<%= @topic.title %>
-	<br />
-	Description:
-	<%= @topic.description %>
-	<br />
 	Owner ID:
 	<%= link_to @topic.owner_id, user_path(@topic.owner_id) %>
 </p>

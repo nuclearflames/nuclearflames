@@ -1,28 +1,34 @@
 <h1>
 Posts about <%=h @thred.title %>:
 </h1>
+<p>
+  <b>Post description:</b>
+  <%= @thred.description %>
+  </p>
 <table id ="form">
-<% @posts.each do |posts| %>
 	<tr>
-		<th width="30">
-		Title:
+		<th width="50px">
+		ID:
 		</th>
 		<th>
-		<%=h posts.title %>
+		Description:
 		</th>
 		<th width="30">
 		Options
 		</th>
 	</tr>
+<% @posts.each do |posts| %>
 	<tr>
-		<th>
-		Description:
-		</th>
 		<td>
-		<%=h posts.description %>
+		<%= posts.id %>
 		</td>
 		<td>
-		<%=h link_to 'View', post_path(posts.id) %>
+		<u><%=h posts.title %></u><br />
+		<%=h posts.description %>
+		</td>
+		<td width="100px">
+		<%=h link_to 'View Post', post_path(posts.id) %><br />
+		<%= link_to 'Created By', user_path(posts.owner_id) %>
 		</td>
 	<tr id="spacer">
 	</tr>
@@ -38,9 +44,6 @@ Posts about <%=h @thred.title %>:
 <p>
   <b>Title:</b>
   <%= @thred.title %>
-  <br />
-  <b>Description:</b>
-  <%= @thred.description %>
   <br />
   <b>Topic ID:</b>
   <%= @thred.topic_id %>

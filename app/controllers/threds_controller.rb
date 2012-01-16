@@ -1,6 +1,5 @@
 class ThredsController < ApplicationController
-	
-	skip_before_filter :authorizeUser, :only => ['show', 'edit']
+skip_before_filter :authorizeUser, :only => ['show']
   # GET /threds
   # GET /threds.xml
   def index
