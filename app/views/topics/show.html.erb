@@ -1,4 +1,3 @@
-
 <h1>
 About <%= @topic.title %>:
 </h1>
@@ -8,30 +7,34 @@ About <%= @topic.title %>:
 </p>
 <table id="form">
 	<tr>
-		<th width="50px">
-		ID:
-		</th>
-		<th>
+		<th  colspan="2">
 		Description:
 		</th>
-		<th>
+		Description:
+		</th>
+		<th colspan="2">
 		Options:
 		</th>
 	</tr>
 <% @threads.each do |threads| %>
 	<tr>
-		<td>
+		<td  width="30px">
 		<%= threads.id %>
 		</td>
 		<td>
 		<%=h link_to threads.title, thred_path(threads.id) %><br />
 		<%=h threads.description %>
 		</td>
-		<td width="100px">
-		<%= link_to 'Edit Thread', edit_thred_path(threads) %><br />
-		<%= link_to 'Created By', user_path(threads.owner_id) %>
+		<td width="50px">
+		<%= link_to 'Owner', user_path(threads.owner_id) %>
 		<%=  %>
 		</td>
+		<% if threads.owner_id == session[:id] %>
+		<td width="130px">
+		<%= link_to 'Edit yoot Thread', edit_thred_path(threads) %><br />
+		<%= link_to 'Delete your thread', threads, :confirm => 'Are you sure?', :method => :delete %>
+		</td>
+		<% end %>
 	</tr>
 <% end %>
 </table>

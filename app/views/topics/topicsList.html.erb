@@ -1,12 +1,11 @@
+<p> Welecome to the forum, here you can wiew all the different articles that people have posted about
+</p>
 <h1>Topic List:</h1>
 <p>Here you can view all the topics that have been posted within our forum:</p>
 <table id="form">
 <tr>
-	<th>
-	ID
-	</th>
-	<th>
-	Description
+	<th colspan="2">
+	Topic:
 	</th>
 	<th colspan="2">
 	Options
@@ -16,10 +15,14 @@
 <tr>
     <td><%= topic.id %></td>
     <td><%= link_to topic.title, topic %><br /><%= topic.description %></td>
-    <td><%= link_to 'Edit', edit_topic_path(topic) %><br />
-	<%= link_to 'Created By', user_path(topic.owner_id) %>
+    <td width="50px">
+	<%= link_to 'Owner', user_path(topic.owner_id) %>
     </td>
-    <td><%= link_to 'Destroy', topic, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if topic.owner_id == session[:id] %>
+    <td width="130px">
+    <%= link_to 'Edit your Topic', edit_topic_path(topic) %><br />
+    <%= link_to 'Delete your Topic', topic, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
 </tr>
 <% end %>
 

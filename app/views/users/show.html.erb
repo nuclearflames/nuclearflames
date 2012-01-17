@@ -1,26 +1,29 @@
 <p>
+  <%=h image_tag @user.photo.url(:small) %>
+</p>
+<p>
   <b>ID:</b>
-  <%=h @user.id %>
-</p><p>
-  <b>Name:</b>
-  <%=h @user.name %>
-</p>
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
-<p>
+  <%=h @user.id %>, 
+  <% if @user1.status == "Administrator" %>
+  <b>Rank:</b>
+  <%=h @user.rank %>,
   <b>Status:</b>
   <%=h @user.status %>
+  <% end %>
+</p><p>
+  <b>Name:</b>
+  <%=h @user.name %> 
+  <%=h @user.surname %>,
 </p>
 <p>
-  <b>Rank:</b>
-  <%=h @user.rank %>
+  <b>Email address:</b>
+  <%=h @user.email %>,
 </p>
-
 <p>
-  <b>Image:</b>
-  <%=h image_tag @user.photo.url(:thumb) %>
+</p>
+<p>
+
 </p>
 
-<%= link_to 'Home', :controller => 'home', :action => 'index' %>
+
+<%= link_to 'Home', :controller => 'home', :action => 'home' %>

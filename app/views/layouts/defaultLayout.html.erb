@@ -3,23 +3,24 @@
 <head>
   <title>Nuclearflames</title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag :all %>
   <%= csrf_meta_tag %>
 </head>
 <body>
 	<div id="header">
 		<span id="home">
-		<%= link_to "Home",  "../../../../home/index" %> | 
-		<%= link_to "Forum", :controller => "topics", :action => "topicsList" %>
+		<%= link_to "Home", :controller => "home", :action => "home" %> | 
+		<%= link_to "Forum", :controller => "topics", :action => "topicsList" %> |
+		<span onclick="goBackHistory()"><u>Go Back to Last Page</u></span>
 		</span>
 		<span id="notice">
 			<%= notice %>
 		</span>
 		<span id="loggedin">
 		<% if session[:id] != nil %>
-			You are logged in as: <%= link_to(user.name, user_path(user.id)) %><br />
-			<span style="position:absolute; top: 20px; right: 1px"}>Click here to <%= link_to('Logoff', '../../../logons/logoff')%> 
-			<%=h image_tag user.photo.url(:thumb), {:style=>"position:absolute; top: 0px; right: 150px"} %></span>
+			You are logged in as: <%= link_to(user.name + " " + user.surname, user_path(user.id)) %><br />
+			<span id="logOff">Click here to <%= link_to('Logoff', '../../../logons/logoff')%> 
+			<%=h image_tag user.photo.url(:thumb), :id=>"profilePic" %></span>
 		<% else %>
 			You are not logged in, <%= link_to "Log in", "../../../../logons/logon" %> or  <%= link_to('Signup', '../../../../users/new') %>
 		<% end %>

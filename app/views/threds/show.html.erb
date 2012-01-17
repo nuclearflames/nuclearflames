@@ -2,34 +2,40 @@
 Posts about <%=h @thred.title %>:
 </h1>
 <p>
+  <b>Thread Creator:</b>
+  <%= link_to @thred.owner_id, user_path(@thred.owner_id) %>
+  <br />
   <b>Post description:</b>
   <%= @thred.description %>
   </p>
 <table id ="form">
 	<tr>
-		<th width="50px">
-		ID:
-		</th>
-		<th>
+		<th colspan="2">
 		Description:
 		</th>
-		<th width="30">
+		<th colspan="2">
 		Options
 		</th>
 	</tr>
 <% @posts.each do |posts| %>
 	<tr>
-		<td>
+		<td width="30px">
 		<%= posts.id %>
 		</td>
 		<td>
-		<u><%=h posts.title %></u><br />
+		<u><%=h link_to posts.title, post_path(posts.id) %></u><br />
 		<%=h posts.description %>
 		</td>
-		<td width="100px">
-		<%=h link_to 'View Post', post_path(posts.id) %><br />
-		<%= link_to 'Created By', user_path(posts.owner_id) %>
+		<td width="50pxs">
+		<%= link_to 'Owner', user_path(posts.owner_id) %>
 		</td>
+		<% if posts.owner_id == session[:id] %>
+		<td width="120px">
+		<%=h link_to 'Edit your Post', edit_post_path(posts.id) %>
+		<br />
+		<%= link_to 'Delete your Post', posts, :confirm => 'Are you sure?', :method => :delete %>
+		</td>
+		<% end %>
 	<tr id="spacer">
 	</tr>
 <% end %>

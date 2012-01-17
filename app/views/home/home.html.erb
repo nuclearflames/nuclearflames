@@ -1,27 +1,42 @@
 <span id="head">
-<% if user.status == "Administrator" %>
-<br />ID: <%= user.id %>
-<br />Status: <%= user.status %>
-<br />Rank: <%= user.rank %>
-<br />Created: <%= user.created_at %>
-<% end %>
 <br />
-<br />First Name: <%= user.name %>
-<br />Surname: <%= user.surname %>
-<br /><%= link_to 'Edit your profile', :action => "edit" %>
-<br />
-
-<%= link_to('Upload a file', 'storages/new') %>
-<br />
-<%= link_to('View uploaded files', 'home/storage') %>
-
-<br />
-<% if user.status == 'Administrator' %>
-<%= link_to "Create a new profile", :controller => 'users', :action => 'new' %><br />
-<%= link_to "View all profiles", :controller => 'users', :action => 'index' %><br />
-<%= link_to "View all Stored data", :controller => 'storages', :action => 'index' %><br />
-<% end %>
-
-
-
 </span>
+
+<table>
+<tr>
+	<th><%= link_to user.name + " " + user.surname, user_path(user.id) %></th>
+</tr>
+<tr>
+	<td width="150px"><%= link_to 'Edit your profile', :action => "edit" %></td>
+</tr>
+<tr>
+	<td><%= link_to('Upload a file', 'storages/new') %></td>
+</tr>
+<tr>
+	<td><%= link_to('View uploaded files', 'home/storage') %></td>
+</tr>
+<tr>
+	<td><%= link_to('View forum', 'topicsList') %></td>
+</tr>
+</table>
+
+<% if user.status == 'Administrator' %>
+<br />
+<table id="administrator">
+<tr>
+	<td><u>Admin Stuff:</u></td>
+</tr>
+	<td><%= link_to "Create a new profile", :controller => 'users', :action => 'new' %></td>
+	<td><%= link_to "View all profiles", :controller => 'users', :action => 'index' %></td>
+	<td><%= link_to "View all Stored data", :controller => 'storages', :action => 'index' %></td>
+<tr>
+	<td>User Created: <%= user.created_at %></td>
+	<td>User ID: <%= user.id %></td>
+	<td>User Status: <%= user.status %></td>
+</tr>
+<tr>
+	<td>User Rank: <%= user.rank %></td>
+</tr>
+<% end %>
+</tr>
+</table>

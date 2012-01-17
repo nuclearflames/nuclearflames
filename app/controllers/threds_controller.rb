@@ -38,7 +38,12 @@ skip_before_filter :authorizeUser, :only => ['show']
 
   # GET /threds/1/edit
   def edit
+    @user = User.find(session[:id])
     @thred = Thred.find(params[:id])
+    if @thred.owner_id != session[:id] || @user.status != "Administrator"
+	redirect_to(thred_path(@thred.id))
+	flash[:notice] = "Can't Edit what aint urs!! :O"
+    end
   end
 
   # POST /threds

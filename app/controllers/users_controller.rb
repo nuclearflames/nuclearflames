@@ -27,12 +27,16 @@ class UsersController < ApplicationController
   end
   # GET /users/1/edit
   def edit
+    if session[:id] 
+	    @user1 = User.find(session[:id])
+    end
     @user = User.find(params[:id])
   end
   # GET /users/1/edit
 
   def show
 	@user = User.find(params[:id])
+	@user1 = User.find(session[:id])
   end
   # POST /users
   # POST /users.xml
