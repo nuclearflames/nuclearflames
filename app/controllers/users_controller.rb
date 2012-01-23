@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     if session[:id] 
 	    @user1 = User.find(session[:id])
     end
-    @user = User.find(params[:id])
+    @user = User.find(params[:id])      
   end
   # GET /users/1/edit
 
@@ -80,6 +80,16 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
+	if params[:edit] == "password"
+		if request.post?
+		user = User.authenticate(@user.email, params[:oldPassword])
+		if user
+		else
+			redirect_to("home/edit?edit=password")
+			flash.now[:notice] =  "Incorrect Password"
+		end
+	end
+	end
     respond_to do |format|
       if @user.update_attributes(params[:user])
 	UserMail.updateUser_notification(@user).deliver

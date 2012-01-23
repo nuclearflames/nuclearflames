@@ -10,6 +10,13 @@
     </div>
   <% end %>
   <div class="field">
+	<%= link_to "Edit personal details", :edit => "pdetails" %>
+	<%= link_to "Change password", :edit => "password" %>
+	<%= link_to "Change profile picture", :edit => "picture" %>
+	<%= link_to "Change email address", :edit => "email" %>
+  </div>
+  <% if params[:edit] == "pdetails" %>
+  <div class="field">
     <%= f.label :"First name" %><br />
     <%= f.text_field :name %>
   </div>
@@ -18,17 +25,31 @@
     <%= f.text_field :surname %>
   </div>
   <div class="field">
-    <%= f.label :"Password" %><br />
+    <%= f.label :"Alias" %><br />
+    <%= f.text_field :alias %>
+  </div>
+  <div class="field">
+    <%= f.label :"About Me" %><br />
+    <%= f.text_area :aboutme %>
+  </div>
+  <% end %>
+  <% if params[:edit] == "password" %>
+  <div class="field">
+    <%= f.label :"New Password" %><br />
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :"Confirm Password" %><br />
+    <%= f.label :"Confirm new Password" %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+  <% end %>
+  <% if params[:edit] == "picture" %>
   <div class="field">
     <%= f.label :"Picture" %><br />
     <%= f.file_field :photo %>
   </div>
+  <% end %>
+  <% if params[:edit] == "email" %>
   <div class="field">
     <%= f.label :"Email" %><br />
     <%= f.text_field :email %>
@@ -37,15 +58,22 @@
     <%= f.label :"Confirm Email" %><br />
     <%= f.text_field :email_confirmation %>
   </div>
+  <% end %>
   <% if session[:id] && @user1.status == "Administrator" %>
   <div class="field" id="administrator">
   <u>Admin Section</u>
   <br />
+	<%= link_to "Change admin details", :adminEdit => "adminDetails" %>
+  <% if params[:adminEdit] == "adminDetails" %>
+  <br />
     <%= f.label :"Rank:" %><%= f.select(:rank, options_for_select([['5', '5'],['4', '4'],['3', '3'],['2', '2'],['1', '1'],['0', '0']])) %>
     <%= f.label :"Status:" %><%= f.select(:status, options_for_select([['Administrator', 'Administrator'],['User', 'User'], ['Inactive', 'Inactive']])) %>
+  <% end %>
   </div>
   <% end %>
+  <% if params[:edit] == "pdetails" || params[:edit] == "picture" || params[:edit] == "password" || params[:edit] == "email" || params[:adminEdit] == "adminDetails" %>
   <div class="actions">
-    <%= f.submit "Create account" %>
+    <%= f.submit "Update Details" %>
   </div>
+  <% end %>
 <% end %>
