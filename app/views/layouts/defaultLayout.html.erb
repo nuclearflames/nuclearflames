@@ -17,7 +17,7 @@
 			<%= notice %>
 		</span>
 		<span id="loggedin">
-		<% if session[:id] != nil %>
+		<% if session[:id] %>
 			You are logged in as: <%= link_to(user.name + " " + user.surname + " " + "(" + user.alias + ")", user_path(user.id)) %><br />
 			<span id="logOff">Click here to <%= link_to('Logoff', '../../../logons/logoff')%> 
 			<%=h image_tag user.photo.url(:thumb), :id=>"profilePic" %></span>
