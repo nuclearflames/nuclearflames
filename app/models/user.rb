@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :storages, :dependent => :destroy
+	has_many :timelines, :dependent => :destroy
 	validates_presence_of :name, :surname, :password, :password_confirmation, :email, :email_confirmation,  :on => :create
 	validates_presence_of :name, :surname, :email,  :on => :update
 	validates_uniqueness_of :email
@@ -17,8 +18,8 @@ class User < ActiveRecord::Base
 		:small  => "75x75>",
 		:standard  => "400x400>",
 		},
-	:url  => "/images/userimages/:id/:style/:basename.:extension",
-	:path => ":rails_root/public/images/userimages/:id/:style/:basename.:extension"
+	:url  => "/documents/userimages/:id/:style/:basename.:extension",
+	:path => ":rails_root/public/documents/userimages/:id/:style/:basename.:extension"
 	
 	validates_attachment_presence :photo, :message => "is missing"
 	validates_attachment_size :photo, :less_than => 1.megabytes, :message => "is larger than 1MB"

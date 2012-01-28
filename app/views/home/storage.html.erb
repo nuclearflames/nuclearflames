@@ -10,7 +10,7 @@
 		<td>ID: <%=h storage.user_id %></td>
 		<td>Title: <%=h storage.title %></td>
 		<td>Decription: <%=h storage.description %></td>
-		<td><%=h link_to('Items',storage.file.url()) %></td>
+		<td><%=h link_to('Download',storage.file.url()) %></td>
 		<td><%=h link_to('Edit', edit_storage_path(storage)) %></td>
 		<td><%= link_to 'Delete', storage, :confirm => 'Are you sure you want to permanantley delete this data?', :method => :delete %></td>
 	</tr>

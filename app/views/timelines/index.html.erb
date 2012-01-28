@@ -1,0 +1,28 @@
+<h1>Listing timelines</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>User ID</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Date</th>
+  </tr>
+
+<% @timelines.each do |timeline| %>
+  <tr>
+    <td><%= timeline.id %></td>
+    <td><%= timeline.user_id %></td>
+    <td><%= timeline.title %></td>
+    <td><%= timeline.description %></td>
+    <td><%= timeline.date %></td>
+    <td><%= link_to 'Show', timeline %></td>
+    <td><%= link_to 'Edit', edit_timeline_path(timeline) %></td>
+    <td><%= link_to 'Destroy', timeline, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Timeline for current User', new_timeline_path %>

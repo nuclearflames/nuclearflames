@@ -1,0 +1,25 @@
+<p>Listing Timelines:</p>
+<p>
+<% dateValue = Date.today %>
+<% int = 1 %>
+Today: <%= dateValue %>
+<br />
+</p>
+<div style="position:absolute; left:50px;width:400px;">
+<% @timeline.each do |timeline| %>
+		<% if timeline.date < dateValue %>
+		<% dateValue = timeline.date %>
+		<% end %>
+		<%= link_to int, timeline, :style => "position:inherit;background-color:white;width:50px;height:11px;font-size:11px;color:black;" %>
+		<span style="position:inherit;background-color:green;left:70px;font-size:10px;">
+			<%= timeline.title %>
+		</span>
+		<br />
+		<% int += 1 %>
+<% end %>
+<p>
+First Entry: <%= dateValue %>
+<br />
+<%=h link_to 'Add to your timeline', new_timeline_path %>
+</p>
+</div>

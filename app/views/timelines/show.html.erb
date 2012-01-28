@@ -1,0 +1,9 @@
+
+Title: <%= @timeline.title %><br />
+Description: <%= @timeline.description %><br />
+Date: <%= @timeline.date%>
+
+<p>
+<%= link_to 'Edit', edit_timeline_path(@timeline) %> |
+<%= link_to 'Timelines', :action => "timeline", :controller => "home" %>
+</p>

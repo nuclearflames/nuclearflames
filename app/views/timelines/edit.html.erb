@@ -1,0 +1,10 @@
+<h1>Editing timeline</h1>
+<% content_for :calendar do %>
+  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/redmond/jquery-ui.css" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js", "application" %>
+ <% end %>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @timeline %> |
+<%= link_to 'Timeline', timelines_path %>
