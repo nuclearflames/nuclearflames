@@ -2,4 +2,4 @@
 db/*.sqlite3
 log/*.log
 tmp/
- .public/documents/* .config/initializers/*
+ .public/documents/*
