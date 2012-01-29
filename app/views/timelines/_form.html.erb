@@ -1,4 +1,4 @@
-<%= form_for(@timeline) do |f| %>
+<%= form_for(@timeline, :html => { :multipart => true }) do |f| %>
   <% if @timeline.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@timeline.errors.count, "error") %> prohibited this timeline from being saved:</h2>
@@ -16,12 +16,16 @@
 	<%= f.text_field :title %>
   </div>
   <div class="field">
-	<%= f.label :Data %>:
+	<%= f.label :Details %>:
 	<%= f.text_field :description %>
   </div>
   <div class="field">
 	<%= f.label :When? %>:
 	<%= f.text_field :date %>
+  </div>
+  <div class="field">
+    <%= f.label 'Add a file' %>:
+    <%= f.file_field :file %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,7 +1,8 @@
 
 Title: <%= @timeline.title %><br />
 Description: <%= @timeline.description %><br />
-Date: <%= @timeline.date%>
+Date: <%= @timeline.date %><br />
+File: <%= link_to "Download file", @timeline.file.url() %>
 
 <p>
 <%= link_to 'Edit', edit_timeline_path(@timeline) %> |
