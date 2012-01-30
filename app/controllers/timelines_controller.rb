@@ -11,12 +11,12 @@ class TimelinesController < ApplicationController
       format.xml  { render :xml => @timelines }
     end
   end
-
   # GET /timelines/1
   # GET /timelines/1.xml
   def show
-	@user = User.find(session[:id])
+	@user = User.find_by_id(session[:id])
 	@timeline = Timeline.find(params[:id])
+	
 	if @timeline.user_id == session[:id] || @user.status == "Administrator"
 	    respond_to do |format|
 	      format.html # show.html.erb
@@ -53,11 +53,10 @@ class TimelinesController < ApplicationController
   def create
     @timeline = Timeline.new(params[:timeline])
 	@timeline.user_id = session[:id].to_i
-	if @timeline
-		@utcline = @timeline.date.to_s.split(/\//)
-		@timeline.date = @utcline[-1]
-		#DATES ARE ORGANISED INCOOREECTLY 31st is registering as a month :( lol
+	if @timeline.date == nil
+		@timeline.date = Date.today
 	end
+
   respond_to do |format|
       if @timeline.save
         format.html { redirect_to(:controller => "home", :action => "timeline") }

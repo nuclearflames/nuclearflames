@@ -1,0 +1,47 @@
+<p>Listing Timelines:</p>
+<p>
+<% dateValue = Date.today %>
+<% int = 1 %>
+Today: <%= dateValue %>
+<br />
+</p>
+<div style="position:absolute; left:50px;width:400px;">
+<% @timeline.each do |timeline| %>
+		<% if timeline.date < dateValue %>
+		<% dateValue = timeline.date %>
+		<% end %>
+		<%= link_to int, timeline, :style => "position:inherit;background-color:white;width:50px;height:11px;font-size:11px;color:black;" %>
+		<span style="position:inherit;background-color:green;left:70px;font-size:10px;">
+			<%= timeline.title %>
+		</span>
+		<br />
+		<% int += 1 %>
+<% end %>
+<p>
+First Entry: <%= dateValue %>
+<br />
+<%=h link_to 'Add to your timeline', new_timeline_path %>
+</p>
+</div>
+<div style="position:absolute;top:50px;right:250px;">
+<p>
+<%= @user.name %>'s <b>Storage:</b><br />
+  <% @storage.each do |storage| %>
+	<table id="form">
+	<tr>
+		<th colspan="3">Details:</th>
+		<th colspan="3">Options:</th>
+	</tr>
+	<tr>		
+		<td>ID: <%=h storage.user_id %></td>
+		<td>Title: <%=h storage.title %></td>
+		<td>Decription: <%=h storage.description %></td>
+		<td><%=h link_to('Download',storage.file.url()) %></td>
+		<td><%=h link_to('Edit', edit_storage_path(storage)) %></td>
+		<td><%= link_to 'Delete', storage, :confirm => 'Are you sure you want to permanantley delete this data?', :method => :delete %></td>
+	</tr>
+  <% end %>
+</p>
+<p>
+  <%= link_to('Upload a file', 'storages/new') %>
+</p>

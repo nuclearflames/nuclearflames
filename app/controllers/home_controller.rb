@@ -6,6 +6,12 @@ class HomeController < ApplicationController
 	  
 	  def home
 	  end
+	  
+	  def portfolio
+		@user = User.find(session[:id])
+		@timeline = @user.timelines.sort_by(&:date).reverse
+		@storage = @user.storages	  
+	  end
   
 	def edit	  
 		if session[:id] 
