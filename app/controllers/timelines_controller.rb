@@ -54,7 +54,7 @@ class TimelinesController < ApplicationController
     @timeline = Timeline.new(params[:timeline])
 	@timeline.user_id = session[:id].to_i
 	if @timeline.date == nil
-		@timeline.date = Date.today
+		@timeline.date = Date.current
 	end
 
   respond_to do |format|
