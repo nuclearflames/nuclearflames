@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(:version => 20120201150329) do
     t.datetime "photo_updated_at"
     t.string   "font",               :default => "Times New Roman"
     t.string   "color",              :default => "White"
-    t.integer  "size",               :default => 10
+    t.integer  "size",               :default => 16
   end
 
 end

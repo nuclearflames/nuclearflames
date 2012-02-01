@@ -2,7 +2,7 @@ class AddFontSizeColorToUsers < ActiveRecord::Migration
   def self.up
     add_column :users, :font, :string, :default => "Times New Roman"
     add_column :users, :color, :string, :default => "White"
-    add_column :users, :size, :integer, :default => 10
+    add_column :users, :size, :integer, :default => 16
   end
 
   def self.down
