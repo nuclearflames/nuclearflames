@@ -3,9 +3,11 @@
 <head>
 	<title>Nuclearflames</title>
 	<%= stylesheet_link_tag :all %>
+	<% if session[:id] %>
 	<style type="text/css">
-	a,p,span,u,td {font-size: <%= user.size %>px; color:<%= user.color %>;font-family:<%= user.font %>; Arial, Comic Sans MS; }
+	a,p,u,td {font-size: <%= user.size %>px; color:<%= user.color %>;font-family:<%= user.font %>; Arial, Comic Sans MS; }
 	</style>
+	<% end %>
 	<%= javascript_include_tag :all %>
 	<%= yield(:calendar) %>
 	<%= csrf_meta_tag %>
