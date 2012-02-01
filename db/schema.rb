@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129184204) do
+ActiveRecord::Schema.define(:version => 20120201150329) do
 
   create_table "posts", :force => true do |t|
     t.string   "title",       :null => false
@@ -65,15 +65,15 @@ ActiveRecord::Schema.define(:version => 20120129184204) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                                       :null => false
-    t.string   "digest",                                     :null => false
-    t.string   "salt",                                       :null => false
-    t.integer  "rank",               :default => 0,          :null => false
+    t.string   "name",                                              :null => false
+    t.string   "digest",                                            :null => false
+    t.string   "salt",                                              :null => false
+    t.integer  "rank",               :default => 0,                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                                      :null => false
+    t.string   "email",                                             :null => false
     t.string   "status",             :default => "Inactive"
-    t.string   "surname",                                    :null => false
+    t.string   "surname",                                           :null => false
     t.string   "alias"
     t.string   "aboutme"
     t.time     "birthday"
@@ -81,6 +81,9 @@ ActiveRecord::Schema.define(:version => 20120129184204) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "font",               :default => "Times New Roman"
+    t.string   "color",              :default => "White"
+    t.integer  "size",               :default => 10
   end
 
 end

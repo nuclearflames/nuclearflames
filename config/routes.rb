@@ -1,4 +1,6 @@
 Nuclearflames::Application.routes.draw do
+  get "profiles/edit"
+
   resources :timelines
 
   resources :threds

@@ -43,7 +43,10 @@ Posts about <%=h @thred.title %>:
 
 <div id="newPost">
 <% if session[:id] %>
+<%= link_to 'Create new Post', new_post_path %></td>
+<!--
 <%= render 'posts/form' %>
+-->
 <% end %>
 </div>
 <div id="description">

@@ -41,7 +41,10 @@ About <%= @topic.title %>:
 
 <div id="newPost">
 <% if session[:id] %>
+<%= link_to 'Create new Thread', new_thred_path %></td>
+<!--
 <%= render 'threds/form' %>
+-->
 <% end %>
 </div>
 <div id="description">

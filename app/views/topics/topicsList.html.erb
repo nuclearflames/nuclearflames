@@ -25,11 +25,14 @@
     <% end %>
 </tr>
 <% end %>
-
 </table>
 <br />
 <div id="newPost">
 <% if session[:id] %>
+    <%= link_to 'Create a New Topic', new_topic_path %></td>
+
+<!--
 <%= render 'form' %>
+-->
 <% end %>
 </div>

@@ -79,7 +79,10 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-
+	@user.font = params[:font]
+	@user.color = params[:color]
+	@user.size = params[:size]
+	
 	if params[:edit] == "password"
 		if request.post?
 		user = User.authenticate(@user.email, params[:oldPassword])

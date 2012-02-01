@@ -14,6 +14,7 @@
 	<%= link_to "Change password", :edit => "password" %>
 	<%= link_to "Change profile picture", :edit => "picture" %>
 	<%= link_to "Change email address", :edit => "email" %>
+	<%= link_to "Change visuals", :edit => "visuals" %>
   </div>
   <% if params[:edit] == "pdetails" %>
   <div class="field">
@@ -58,6 +59,25 @@
     <%= f.label :"Confirm Email" %><br />
     <%= f.text_field :email_confirmation %>
   </div>
+  <% end %>
+  <% if params[:edit] == "visuals" %>
+	  <div class="field">
+		<%= f.label :"Font:" %>
+		<%= f.select(:font, options_for_select([['Times New Roman','Times New Roman'],['Arial','Arial'],['Comic Sans MS','Comic Sans MS']])) %>
+		<br />
+	  </div>
+	  <div class="field">
+		<%= f.label :"Color:" %>
+		<%= f.select(:color, options_for_select([['White','White'],['Green','Green'],['Yellow','Yellow'],['Red','Red']])) %>
+		<br />
+	  </div>
+	  <div class="field">
+		<%= f.label :"Size:" %>
+		<%= f.select(:size, options_for_select([['18','18'],['20','20'],['22','22']])) %>
+	  </div>  
+	  <div class="actions">
+		<%= f.submit "Update Details" %>
+	  </div>
   <% end %>
   <% if session[:id] && @user1.status == "Administrator" %>
   <div class="field" id="administrator">
