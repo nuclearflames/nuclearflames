@@ -25,7 +25,8 @@ a:hover {
 }
 
 div.field, div.actions {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
+	width:400px;
 }
 
 #notice {
@@ -280,4 +281,14 @@ div.field, div.actions {
 
 #timeBox {
 	
+}
+
+#mapCanvas
+{
+	position:absolute;
+	z-index:10;
+	right :5px;
+	bottom:100px;
+	width:400px;
+	height:400px;
 }

@@ -1,0 +1,27 @@
+<%= form_for(@location) do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :Title %>:
+    <%= f.text_field :title %><br />
+    <%= f.label :Description %>:
+    <%= f.text_field :description %><br />
+    <%= f.label :Lat %>:
+    <%= f.text_field :lat, :readonly => "true" %><br />
+    <%= f.label :Long %>:
+    <%= f.text_field :long, :readonly => "true" %><br />
+  </div>
+
+  <div class="actions">
+    <%= f.submit :onfocus => "validate();", :onmouseover => "validate();" %>
+  </div>
+<% end %>

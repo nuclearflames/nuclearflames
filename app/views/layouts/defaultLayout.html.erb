@@ -3,16 +3,21 @@
 <head>
 	<title>Nuclearflames</title>
 	<%= stylesheet_link_tag :all %>
+	<%= javascript_include_tag :all %>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB3gx_9qaR1qczUh-vHg35EhzDYTtfwfNs&sensor=true">
+    </script>
 	<% if session[:id] %>
 	<style type="text/css">
 	a,p,u,td {font-size: <%= user.size %>px; color:<%= user.color %>;font-family:<%= user.font %>; Arial, Comic Sans MS; }
 	</style>
 	<% end %>
-	<%= javascript_include_tag :all %>
 	<%= yield(:calendar) %>
+	<%= yield(:maps) %>
 	<%= csrf_meta_tag %>
+<noscript>Please enable javascript to use this website fully</noscript>
 </head>
-<body>
+<body onload="initialize()">
 	<div id="header">
 		<span id="home">
 		<%= link_to "Home", :controller => "home", :action => "home" %> | 

@@ -1,4 +1,6 @@
 Nuclearflames::Application.routes.draw do
+  resources :locations
+
   get "profiles/edit"
 
   resources :timelines
@@ -85,6 +87,7 @@ Nuclearflames::Application.routes.draw do
    match 'topicsList' => 'topics#topicsList'
    match 'timeline' => 'home#timeline'
    match 'portfolio' => 'home#portfolio'
+   match 'location' => 'home#location'
    
   # See how all your routes lay out with "rake routes"
 

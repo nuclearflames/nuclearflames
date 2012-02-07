@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201150329) do
+ActiveRecord::Schema.define(:version => 20120202175357) do
+
+  create_table "locations", :force => true do |t|
+    t.string  "title",                                       :null => false
+    t.integer "user_id",                                     :null => false
+    t.string  "description",                                 :null => false
+    t.string  "status",                                      :null => false
+    t.decimal "lat",         :precision => 15, :scale => 10, :null => false
+    t.decimal "long",        :precision => 15, :scale => 10, :null => false
+  end
 
   create_table "posts", :force => true do |t|
     t.string   "title",       :null => false

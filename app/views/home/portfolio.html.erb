@@ -41,9 +41,9 @@ Today: <%= dateValue %>
 		<td><%=h link_to('Edit', edit_storage_path(storage)) %></td>
 		<td><%= link_to 'Delete', storage, :confirm => 'Are you sure you want to permanantley delete this data?', :method => :delete %></td>
 	</tr>
-	</table>
-  <% end %>
   <p>
   <%= link_to('Upload a file', 'storages/new') %>
   </p>
+	</table>
+  <% end %>
 </div>

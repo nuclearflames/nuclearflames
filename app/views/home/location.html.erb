@@ -1,0 +1,64 @@
+<% content_for :maps do %>
+<script type="text/javascript">
+<!--
+var locations = [<% @location.each do |location| %>new google.maps.LatLng(<%= location.lat %>,<%= location.long %>),<% end %>];
+var titles = [<% @location.each do |location| %>"<%= location.title %>",<% end %>];
+var markers = [];
+var iterator = 0;
+var map;
+
+function initialize() 
+{
+        var myOptions = {
+          center: locations[0],
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("mapCanvas"), myOptions);
+	drop();
+}
+
+  function drop() 
+  {
+    for (var i = 0; i < locations.length; i++) {
+      setTimeout(function() {
+        addMarker();
+      }, i * 200);
+    }
+  }
+  
+function addMarker() 
+{
+	markers.push(new google.maps.Marker({
+	position: locations[iterator],
+	map: map,
+	title: titles[iterator],
+	draggable: false,
+	animation: google.maps.Animation.DROP
+	}));
+	iterator++;
+}
+  
+//-->
+</script>
+<% end %>
+
+<h1>Showing your previous Locations</h1>
+<table style="width:400px;">
+<tr>
+	<th>Title:</th>
+	<th>Description:</th>
+	<th>Lat/Long</th>
+	<th>Options:</th>
+</tr>
+<% @location.each do |location| %>
+	<tr>
+		<td><%= location.title %></td>
+		<td><%= location.description %></td>
+		<td><%= location.long %><br />Lattitude: <%= location.lat %></td>
+		<td><%= link_to 'Edit', edit_location_path(location) %></td>
+	</tr>
+<% end %>
+</table>
+<%= link_to "Create a New Location", :controller => "locations", :action => "new" %>
+<div id="mapCanvas"></div>
