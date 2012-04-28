@@ -20,7 +20,11 @@
 <body onload="initialize()">
 	<div id="header">
 		<span id="home">
+		<% if !session[:id] %>
+			<%= link_to "Home", :controller => "home", :action => "index" %> | 
+		<% else %>
 		<%= link_to "Home", :controller => "home", :action => "home" %> | 
+		<% end %>
 		<%= link_to "Forum", :controller => "topics", :action => "topicsList" %> |
 		<span onclick="goBackHistory()"><u>Go Back to Last Page</u></span>
 		</span>
@@ -37,6 +41,47 @@
 		<% end %>
 		</span>
 	</div>
+	<!--
+	<div class="mainMenu">
+	  <ul>
+	    <li>
+	      <a href="">
+		<span>Home</span>
+	      </a>
+	    </li>
+	    <li>
+	      <a href="">
+		<span>Valid CSS</span>
+	      </a>
+	    </li>
+	    <li>
+	      <a href="">
+		<%=h image_tag "homeLink2.png" %>
+		<span>Valid CSS</span>
+	      </a>
+	    </li>
+	    <li>
+	      <a href="">
+		<%=h image_tag "homeLink.png" %>
+		<span>Valid CSS</span>
+	      </a>
+	    </li>
+	    <li>
+	      <a href="">
+		<%=h image_tag "homeLink.png" %>
+		<span>Valid CSS</span>
+	      </a>
+	    </li>
+	    <li>
+	      <a href="">
+		<%=h image_tag "homeLink.png" %>
+		<span>Valid CSS</span>
+	      </a>
+	    </li>
+	  </ul>
+	</div>
+	-->
+	
 	<div id="content">
 		<div id="mainContent">
 

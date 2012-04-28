@@ -8,8 +8,10 @@ class HomeController < ApplicationController
 	  end
 	  
 	  def location
-		@user = User.find(session[:id])
-		@location = @user.locations
+		if session[:id]
+			@user = User.find(session[:id])
+			@location = @user.locations
+		end
 	  end
 	  
 	  def portfolio

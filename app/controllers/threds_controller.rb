@@ -40,7 +40,7 @@ skip_before_filter :authorizeUser, :only => ['show']
   def edit
     @user = User.find(session[:id])
     @thred = Thred.find(params[:id])
-    if @thred.owner_id != session[:id] || @user.status != "Administrator"
+    if @thred.user_id != session[:id] || @user.status != "Administrator"
 	redirect_to(thred_path(@thred.id))
 	flash[:notice] = "Can't Edit what aint urs!! :O"
     end
@@ -50,7 +50,7 @@ skip_before_filter :authorizeUser, :only => ['show']
   # POST /threds.xml
   def create
     @thred = Thred.new(params[:thred])
-    @thred.owner_id = session[:id]
+    @thred.user_id = session[:id]
     @thred.topic_id = session[:topic_id]
     
     respond_to do |format|
@@ -85,10 +85,12 @@ skip_before_filter :authorizeUser, :only => ['show']
   # DELETE /threds/1.xml
   def destroy
     @thred = Thred.find(params[:id])
+	if @thred.user_id == session[:id]
     @thred.destroy
+end
 
     respond_to do |format|
-      format.html { redirect_to(threds_url) }
+      format.html { redirect_to(:controller => "topics", :action => "topicsList") }
       format.xml  { head :ok }
     end
   end

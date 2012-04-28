@@ -3,7 +3,7 @@ Posts about <%=h @thred.title %>:
 </h1>
 <p>
   <b>Thread Creator:</b>
-  <%= link_to @thred.owner_id, user_path(@thred.owner_id) %>
+  <%= link_to @thred.user_id, user_path(@thred.user_id) %>
   <br />
   <b>Post description:</b>
   <%= @thred.description %>
@@ -27,9 +27,9 @@ Posts about <%=h @thred.title %>:
 		<%=h posts.description %>
 		</td>
 		<td width="50pxs">
-		<%= link_to 'Owner', user_path(posts.owner_id) %>
+		<%= link_to 'Owner', user_path(posts.user_id) %>
 		</td>
-		<% if posts.owner_id == session[:id] %>
+		<% if posts.user_id == session[:id] %>
 		<td width="120px">
 		<%=h link_to 'Edit your Post', edit_post_path(posts.id) %>
 		<br />
@@ -58,7 +58,7 @@ Posts about <%=h @thred.title %>:
   <%= @thred.topic_id %>
   <br />
   <b>Thread owner:</b>
-  <%= link_to @thred.owner_id, user_path(@thred.owner_id) %>
+  <%= link_to @thred.user_id, user_path(@thred.user_id) %>
 
 </p>
 

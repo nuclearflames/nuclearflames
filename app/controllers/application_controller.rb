@@ -5,8 +5,8 @@ protect_from_forgery
  
  skip_before_filter :authorizeUser, :only => ['verify', 'verifyA']
  layout "defaultLayout"
+ 
 
-		
   def verify
 	code = params[:code]
 	if code

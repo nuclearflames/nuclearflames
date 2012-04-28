@@ -26,10 +26,10 @@ About <%= @topic.title %>:
 		<%=h threads.description %>
 		</td>
 		<td width="50px">
-		<%= link_to 'Owner', user_path(threads.owner_id) %>
+		<%= link_to 'Owner', user_path(threads.user_id) %>
 		<%=  %>
 		</td>
-		<% if threads.owner_id == session[:id] %>
+		<% if threads.user_id == session[:id] %>
 		<td width="130px">
 		<%= link_to 'Edit yoot Thread', edit_thred_path(threads) %><br />
 		<%= link_to 'Delete your thread', threads, :confirm => 'Are you sure?', :method => :delete %>
@@ -52,7 +52,7 @@ About <%= @topic.title %>:
 	Title:
 	<%= @topic.title %>
 	Owner ID:
-	<%= link_to @topic.owner_id, user_path(@topic.owner_id) %>
+	<%= link_to @topic.user_id, user_path(@topic.user_id) %>
 </p>
 <p>Edit this topics details: <%= link_to 'Edit', edit_topic_path(@topic) %>
 <br />Or go back: <%= link_to 'Back', :action => "topicsList" %>

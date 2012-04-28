@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120202175357) do
+ActiveRecord::Schema.define(:version => 20120412121134) do
+
+  create_table "friendships", :force => true do |t|
+    t.integer  "user_id",                       :null => false
+    t.integer  "friend_id",                     :null => false
+    t.boolean  "confirmed",  :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locations", :force => true do |t|
     t.string  "title",                                       :null => false
@@ -26,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20120202175357) do
     t.string   "title",       :null => false
     t.string   "description", :null => false
     t.integer  "thred_id",    :null => false
-    t.integer  "owner_id",    :null => false
+    t.integer  "user_id",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20120202175357) do
     t.string   "title",       :null => false
     t.string   "description", :null => false
     t.integer  "topic_id",    :null => false
-    t.integer  "owner_id",    :null => false
+    t.integer  "user_id",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20120202175357) do
   create_table "topics", :force => true do |t|
     t.string   "title",       :null => false
     t.string   "description", :null => false
-    t.integer  "owner_id",    :null => false
+    t.integer  "user_id",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

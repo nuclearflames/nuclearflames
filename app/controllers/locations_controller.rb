@@ -20,7 +20,6 @@ before_filter :authorizeAdmin, :only => ['index']
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @location }
     end
   end
 
@@ -77,10 +76,12 @@ before_filter :authorizeAdmin, :only => ['index']
   # DELETE /locations/1.xml
   def destroy
     @location = Location.find(params[:id])
+	if @location.user_id == session[:id]
     @location.destroy
-
+end
     respond_to do |format|
-      format.html { redirect_to(locations_url) }
+      format.html { redirect_to(:controller => 'home', :action => 'location') }
+      flash[:notice] = 'Location was successfully deleted.'
       format.xml  { head :ok }
     end
   end

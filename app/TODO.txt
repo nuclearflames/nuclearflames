@@ -1,0 +1,2 @@
+Change owner_id to user_id in schema
+Add administrator deletion option, currently only the user can delete their items

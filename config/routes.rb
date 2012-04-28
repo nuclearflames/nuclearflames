@@ -1,4 +1,6 @@
 Nuclearflames::Application.routes.draw do
+  resources :friendships
+
   resources :locations
 
   get "profiles/edit"

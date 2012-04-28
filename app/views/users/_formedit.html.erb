@@ -9,11 +9,11 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-	<%= link_to "Edit personal details", :edit => "pdetails" %>
-	<%= link_to "Change password", :edit => "password" %>
-	<%= link_to "Change profile picture", :edit => "picture" %>
-	<%= link_to "Change email address", :edit => "email" %>
+  <div class="field" style="width:1000px;">
+	<%= link_to "Edit personal details", :edit => "pdetails" %> |
+	<%= link_to "Change password", :edit => "password" %> |
+	<%= link_to "Change profile picture", :edit => "picture" %> |
+	<%= link_to "Change email address", :edit => "email" %> |
 	<%= link_to "Change visuals", :edit => "visuals" %>
   </div>
   <% if params[:edit] == "pdetails" %>

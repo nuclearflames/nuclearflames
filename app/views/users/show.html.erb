@@ -1,29 +1,127 @@
+<% content_for :maps do %>
+	<script type="text/javascript">
+	<!--
+	var locations = [<% @location.each do |location| %>new google.maps.LatLng(<%= location.lat %>,<%= location.long %>),<% end %>];
+	var titles = [<% @location.each do |location| %>"<%= location.title %>",<% end %>];
+	var urls = [<% @location.each do |location| %>"../locations/<%= location.id %>",<% end %>];
+	var markers = [];
+	var iterator = 0;
+	var map;
+
+	function initialize() 
+	{
+		var myOptions = {
+		  center: locations[0],
+		  zoom: 8,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("mapCanvasUser"), myOptions);
+		drop();
+	}
+
+	  function drop() 
+	  {
+	    for (var i = 0; i < locations.length; i++) {
+	      setTimeout(function() {
+		addMarker();
+	      }, i * 200);
+	    }
+	  }
+	  
+	function addMarker() 
+	{
+		var marker = new google.maps.Marker({
+		position: locations[iterator],
+		map: map,
+		title: titles[iterator],
+		draggable: false,
+		animation: google.maps.Animation.DROP,
+		url: urls[iterator],
+		});
+	  
+		google.maps.event.addListener(marker, 'click', function() {
+		window.location.href = marker.url;
+		});
+		
+		markers.push(marker);
+		iterator++;
+	}
+
+
+	//-->
+	</script>
+<% end %>
+
 <p>
   <%=h image_tag @user.photo.url(:small) %>
 </p>
 <p>
-  <b>ID:</b>
-  <%=h @user.id %>, 
-  <% if @user1.status == "Administrator" %>
-  <b>Rank:</b>
-  <%=h @user.rank %>,
-  <b>Status:</b>
-  <%=h @user.status %>
-  <% end %>
-</p><p>
   <b>Name:</b>
-  <%=h @user.name %> 
-  <%=h @user.surname %>,
+  <%=h @user.name %>
+  <%=h @user.surname %>
 </p>
 <p>
   <b>Email address:</b>
-  <%=h @user.email %>,
+  <%=h @user.email %>
 </p>
 <p>
+  <b>About Me:</b>
+  <%=h @user.aboutme %>
 </p>
-<p>
 
-</p>
+<div style="position:absolute; top:50px; right:0px;width:350px;">
+	<p>My Timeline:</p>
+	<p>
+		<% dateValue = Date.today %>
+		<% int = 1 %>
+		Today: <%= dateValue %>
+		<br />
+	</p>
+	<% @timeline.each do |timeline| %>
+			<% if timeline.date < dateValue %>
+			<% dateValue = timeline.date %>
+			<% end %>
+			<%= link_to int, timeline, :style => "position:inherit;background-color:white;width:50px;height:11px;font-size:11px;color:black;" %>
+			<span style="position:inherit;background-color:green;left:70px;font-size:10px;">
+				<%= timeline.title %>
+			</span>
+			<br />
+			<% int += 1 %>
+	<% end %>
+	<p>
+		First Entry: <%= dateValue %>
+		<% if session[:id] == params[:id] %><%=h link_to 'Add to your timeline', new_timeline_path %><% end %>
+	</p>
+	<div id="friendsList">
 
+		<p>My Friends:</p>
+		<% @user.friends.each do |friends| %>
+			<%= friends.name %>
+			<%= friends.surname %>
+			<%= link_to "Remove Friend", @user.friendships.find_by_friend_id(friends.id), :confirm => 'Are you sure?', :method => :delete %>  
+		<br />
+		<% end %>
+	</div>
+</div>
 
-<%= link_to 'Home', :controller => 'home', :action => 'home' %>
+<% if @user.name != @user1.name %><%= link_to "Add As Friend", friendships_path(:friend_id => @user), :method => :post %>   <% end %>
+ 
+<h1>My visited locations</h1>
+<% if session[:id] == params[:id] %><%= link_to 'Add to locations', new_location_path %><% end %>
+<div id="mapCanvasUser"></div>
+ 
+<% if @user1.status="administrator" %>
+	<div id="administrator">
+		<p>
+			Admin Panel:
+		</p>
+		<p>
+			<b>ID:</b>
+			<%=h @user.id %>, 
+			<b>Rank:</b>
+			<%=h @user.rank %>,
+			<b>Status:</b>
+			<%=h @user.status %>
+		</p>
+	</div>
+<% end %>

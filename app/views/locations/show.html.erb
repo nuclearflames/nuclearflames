@@ -33,6 +33,6 @@ Description: <%= @location.description %><br />
 Lattitude: <%= @location.lat %><br />
 Longnitude: <%= @location.long %><br />
 <%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'locations', :controller => "home", :action => "location" %>
-
+<%= link_to 'locations', :controller => "home", :action => "location" %> |
+<%= link_to 'Destroy', location_path, :confirm => 'Are you sure?', :method => :delete %>
 <div id="mapCanvas"></div>

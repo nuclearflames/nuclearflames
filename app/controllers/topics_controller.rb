@@ -41,7 +41,7 @@ skip_before_filter :authorizeUser, :only => ['show', 'topicsList']
   def edit
     @user = User.find(session[:id])
     @topic = Topic.find(params[:id])
-    if @topic.owner_id != session[:id] || @user.status != "Administrator"
+    if @topic.user_id != session[:id] || @user.status != "Administrator"
 	redirect_to(topic_path(@topic.id))
 	flash[:notice] = "Can't Edit what aint urs!! :O"
     end
@@ -51,7 +51,7 @@ skip_before_filter :authorizeUser, :only => ['show', 'topicsList']
   # POST /topics.xml
   def create
     @topic = Topic.new(params[:topic])
-	@topic.owner_id = session[:id]
+	@topic.user_id = session[:id]
     respond_to do |format|
       if @topic.save
         format.html { redirect_to(:action => "topicsList") }
@@ -85,8 +85,9 @@ skip_before_filter :authorizeUser, :only => ['show', 'topicsList']
   # DELETE /topics/1.xml
   def destroy
     @topic = Topic.find(params[:id])
-    @topic.destroy
-
+	if @topic.user_id == session[:id]
+		@topic.destroy
+	end
     respond_to do |format|
       format.html { redirect_to(:action => "topicsList") }
       format.xml  { head :ok }

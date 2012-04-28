@@ -84,7 +84,9 @@ class StoragesController < ApplicationController
   # DELETE /storages/1.xml
   def destroy
     @storage = Storage.find(params[:id])
+	if @storage.user_id == session[:id]
     @storage.destroy
+end
 
     respond_to do |format|
       format.html { redirect_to(:controller => 'home', :action => 'storage') }

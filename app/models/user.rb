@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 	has_many :storages, :dependent => :destroy
 	has_many :timelines, :dependent => :destroy
 	has_many :locations, :dependent => :destroy
+	has_many :friendships, :dependent => :destroy
+	has_many :friends, :through => :friendships, :dependent => :destroy
+	
 	validates_presence_of :name, :surname, :password, :password_confirmation, :email, :email_confirmation,  :on => :create
 	validates_presence_of :name, :surname, :email,  :on => :update
 	validates_uniqueness_of :email

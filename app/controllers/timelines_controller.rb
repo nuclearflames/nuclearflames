@@ -88,7 +88,9 @@ class TimelinesController < ApplicationController
   # DELETE /timelines/1.xml
   def destroy
     @timeline = Timeline.find(params[:id])
-    @timeline.destroy
+	if @timeline.user_id == session[:id]
+		@timeline.destroy
+	end
 
     respond_to do |format|
       format.html { redirect_to(:controller => "home", :action => "timeline") }

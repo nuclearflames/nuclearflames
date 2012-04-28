@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
- skip_before_filter :authorizeUser, :only => ['new', 'create']
+ skip_before_filter :authorizeUser, :only => ['new', 'create', 'show']
  before_filter :authorizeAdmin, :only => ['index', 'edit']
   # GET /users
   # GET /users.xml
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new	  
     if session[:id] 
-	    @user1 = User.find(session[:id])
+	@user1 = User.find(session[:id])
     end
     @user = User.new
 
@@ -27,26 +27,37 @@ class UsersController < ApplicationController
   end
   # GET /users/1/edit
   def edit
-    if session[:id] 
-	    @user1 = User.find(session[:id])
-    end
+    @user1 = User.find(session[:id])
     @user = User.find(params[:id])      
   end
   # GET /users/1/edit
 
   def show
+	@users = User.all
 	@user = User.find(params[:id])
-	@user1 = User.find(session[:id])
+	if session[:id] 
+		@user1 = User.find(session[:id])
+	else
+		@user1 = User.find(params[:id])
+	end
+	@location = @user.locations.all
+	@timeline = @user.timelines.all
+	
+	    respond_to do |format|
+	      format.html # index.html.erb
+	      format.xml  { render :xml => @timeline }
+	      format.xml  { render :xml => @location }
+	    end
   end
   # POST /users
   # POST /users.xml
   def create
     if session[:id] 
-	    @user1 = User.find(session[:id])
+	@user1 = User.find(session[:id])
     end
     @user = User.new(params[:user])
     @user.status = "Inactive" unless @user.status
-    
+
     respond_to do |format|
       if @user.save
 	if @user.status == "Inactive" 
@@ -78,7 +89,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
+	@user = User.find(params[:id])
 	@user.font = params[:font]
 	@user.color = params[:color]
 	@user.size = params[:size]
@@ -86,12 +97,12 @@ class UsersController < ApplicationController
 	if params[:edit] == "password"
 		if request.post?
 		user = User.authenticate(@user.email, params[:oldPassword])
-		if user
-		else
-			redirect_to("home/edit?edit=password")
-			flash.now[:notice] =  "Incorrect Password"
+			if user
+			else
+				redirect_to("home/edit?edit=password")
+				flash.now[:notice] =  "Incorrect Password"
+			end
 		end
-	end
 	end
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -115,13 +126,16 @@ class UsersController < ApplicationController
 	redirect_to(:controller => 'users', :action => 'index')
 	flash[:notice] = 'Can\'t Delete Yourself!!.'
     else
-    @user.destroy
+	    @admin = User.find(session[:id])
+	if @admin.status == "administrator"
+		@user.destroy
+		respond_to do |format|
+			UserMail.destroyUser_notification(@user).deliver
+		end
+	end
 
-    respond_to do |format|
-	UserMail.destroyUser_notification(@user).deliver
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
-    end
     end
   end
 end
