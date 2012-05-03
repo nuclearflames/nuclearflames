@@ -26,7 +26,7 @@ class LogonsController < ApplicationController
   end
 
 	def logonEdit
-		@user = User.find(current_user)
+		@user = User.find(session[:id].to_i)
 		if session[:edit] == 'true'
 			redirect_to(:controller => "home", :action => "edit")
 		end

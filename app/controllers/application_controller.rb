@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
 protect_from_forgery
-helper_method :current_user_session, :current_user
-
  before_filter :authorizeUser
  before_filter :authorizeAdmin, :only => ['index']
  
@@ -49,27 +47,18 @@ helper_method :current_user_session, :current_user
   end  
 
 protected
-	def current_user_session
-		@current_user_session ||= UserSession.find
-	end
-	
-	def current_user
-		@current_user ||= current_user_session && current_user_session.user
-	end
 
 	def authorizeUser
-		unless current_user
-			redirect_to new_user_session_path
+		unless session[:id]
+			redirect_to :controller => 'logons', :action => 'logon'
 			flash[:notice] = 'Please Logon to view this page'
-			return false
 		end
 	end
-	
 	def authorizeAdmin
-		unless current_user.status == "Administrator"
-			redirect_to :controller => 'home', :action => 'index'
-			flash[:notice] = 'Please Logon as an administrator to view this page'
-			return false
+		@user = User.find(session[:id])
+		unless @user.status == "Administrator"
+				redirect_to :controller => 'home', :action => 'index'
+				flash[:notice] = 'Please Logon as an administrator to view this page'
 		end
 	end
 end

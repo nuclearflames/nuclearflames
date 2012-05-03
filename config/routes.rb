@@ -1,7 +1,4 @@
 Nuclearflames::Application.routes.draw do
-	
-  resource :user_session
-
   resources :friendships
 
   resources :locations
@@ -18,13 +15,17 @@ Nuclearflames::Application.routes.draw do
 
   resources :storages
 
-  resources :users
   get "logons/logon"
   post "logons/logon"
   get "logons/logonEdit"
   post "logons/logonEdit"
+
   get "logons/logoff"
+
   get "logons/index"
+
+  resources :users
+
   get "home/index"
 
   # The priority is based upon order of creation:
@@ -83,15 +84,12 @@ Nuclearflames::Application.routes.draw do
    match '/logons/logonEdit' => 'logons#logonEdit'
    match '/home/resendEmail' => 'home#resendEmail'
    match '/home/storage' => 'home#storage'
-   match '/home/edit' => 'home#edit', :as => 'edit'
+   match '/home/edit' => 'home#edit'
    match '/home/editFile' => 'home#editFile'
    match 'topicsList' => 'topics#topicsList'
    match 'timeline' => 'home#timeline'
    match 'portfolio' => 'home#portfolio'
    match 'location' => 'home#location'
-   match '/users/:id/found' => 'users#found'
-   match '/login' => 'user_sessions#new', :as => 'login'
-   match '/logout' => 'user_sessions#destroy', :as => 'logout'
    
   # See how all your routes lay out with "rake routes"
 

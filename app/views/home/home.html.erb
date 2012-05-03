@@ -1,9 +1,9 @@
 <table id="homeTable">
 	<tr>
-		<th><%= link_to current_user.name + " " + current_user.surname, user_path(current_user.id) %></th>
+		<th><%= link_to user.name + " " + user.surname, user_path(user.id) %></th>
 	</tr>
 	<tr>
-		<td width="150px"><%= link_to 'Edit your profile', login_path %></td>
+		<td width="150px"><%= link_to 'Edit your profile', :action => "edit" %></td>
 	</tr>
 	<tr>
 		<td><%= link_to('View forum', 'topicsList') %></td>
@@ -14,18 +14,9 @@
 	<tr>
 		<td><%= link_to('View visited locations', 'location') %></td>
 	</tr>
-	<tr>
-		<td>
-		Find a friend:
-			<% form_tag ('users/' + current_user.id.to_s + '/found'), :method => 'get' do %>
-					<%= text_field_tag :search, params[:search] %>
-					<%= submit_tag "Search", :name => nil %>
-			<% end %>
-		</td>
-	</tr>
-</table>
+	</table>
 
-	<% if current_user.status == 'Administrator' %>
+	<% if user.status == 'Administrator' %>
 		<br />
 		<table id="administrator">
 		<tr>
@@ -35,12 +26,12 @@
 			<td><%= link_to "View all profiles", :controller => 'users', :action => 'index' %></td>
 			<td><%= link_to "View all Stored data", :controller => 'storages', :action => 'index' %></td>
 		<tr>
-			<td>User Created: <%= current_user.created_at %></td>
-			<td>User ID: <%= current_user.id %></td>
-			<td>User Status: <%= current_user.status %></td>
+			<td>User Created: <%= user.created_at %></td>
+			<td>User ID: <%= user.id %></td>
+			<td>User Status: <%= user.status %></td>
 		</tr>
 		<tr>
-			<td>User Rank: <%= current_user.rank %></td>
+			<td>User Rank: <%= user.rank %></td>
 		</tr>
 	<% end %>
 	</tr>

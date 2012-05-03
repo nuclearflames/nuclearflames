@@ -2,10 +2,6 @@ class HomeController < ApplicationController
  skip_before_filter :authorizeUser, :only => ['index', 'resendEmail']
  skip_before_filter :authorizeAdmin, :only => ['index', 'resendEmail']
 	  def index
-		@users = User.all
-		if session[:id] 
-			@user = User.find(current_user) 
-		end
 	  end
 	  
 	  def home
@@ -13,30 +9,30 @@ class HomeController < ApplicationController
 	  
 	  def location
 		if session[:id]
-			@user = User.find(current_user)
+			@user = User.find(session[:id])
 			@location = @user.locations
 		end
 	  end
 	  
 	  def portfolio
-		@user = User.find(current_user)
+		@user = User.find(session[:id])
 		@timeline = @user.timelines.sort_by(&:date).reverse
 		@storage = @user.storages	  
 	  end
   
 	def edit	  
-		if current_user
-		    @user1 = User.find(current_user)
+		if session[:id] 
+		    @user1 = User.find(session[:id])
 		end
-		@user = User.find(current_user)
-		unless session[:edit] == true
-			redirect_to(login_path)
+		@user = User.find(session[:id])
+		unless session[:edit] == 'true'
+			redirect_to(:controller => 'logons', :action => 'logonEdit')
 			flash[:notice] = "Please input you password again to update your account"
 		end
 	end
   
 	def storage
-		@user = User.find(current_user)
+		@user = User.find(session[:id])
 		@storage = @user.storages	  
 	end
   
@@ -63,12 +59,12 @@ class HomeController < ApplicationController
 	end
 
 	def editFile
-		@user = User.find(current_user)
+		@user = User.find(session[:id])
 		@storage = Storage.find(params[:id])
 	end
 
 	def timeline
-		@user = User.find(current_user)
+		@user = User.find(session[:id])
 		@timeline = @user.timelines.sort_by(&:date).reverse
 	end
 end
