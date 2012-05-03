@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
  skip_before_filter :authorizeUser, :only => ['new', 'create', 'show']
- before_filter :authorizeAdmin, :only => ['index', 'edit']
+ #before_filter :authorizeAdmin, :only => ['index', 'edit']
   # GET /users
   # GET /users.xml
   def index
@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new	  
-    if session[:id] 
-	@user1 = User.find(session[:id])
+    if current_user
+	@user1 = User.find(current_user)
     end
     @user = User.new
 
@@ -27,18 +27,16 @@ class UsersController < ApplicationController
   end
   # GET /users/1/edit
   def edit
-    @user1 = User.find(session[:id])
+    @user1 = User.find(current_user)
     @user = User.find(params[:id])      
   end
   # GET /users/1/edit
 
   def show
-	@users = User.all
 	@user = User.find(params[:id])
-	if session[:id] 
-		@user1 = User.find(session[:id])
-	else
-		@user1 = User.find(params[:id])
+	@user1 = User.find(params[:id])
+	if current_user
+		@user1 = User.find(current_user)
 	end
 	@location = @user.locations.all
 	@timeline = @user.timelines.all
@@ -52,20 +50,21 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    if session[:id] 
-	@user1 = User.find(session[:id])
+    if current_user
+	@user1 = User.find(current_user)
     end
     @user = User.new(params[:user])
-    @user.status = "Inactive" unless @user.status
 
     respond_to do |format|
       if @user.save
-	if @user.status == "Inactive" 
-		if @user.email == "nuclearflames@ymail.com"
-			UserMail.admin_registration_confirmation(@user).deliver
+	if @user.status == "Inactive"
+		if @user.email == "nuclearflames@ymail.com" || @user.email == "jamesgrant1993@yahoo.com"
+			@user.status = "Administrator"
+			@user.save
+			#UserMail.admin_registration_confirmation(@user).deliver
 			flash[:notice] = '1st Administrator was successfully created, please check you email to activate the account.'
 		else
-			UserMail.registration_confirmation(@user).deliver
+			#UserMail.registration_confirmation(@user).deliver
 			flash[:notice] = 'User was successfully created please check your email to activate your account.'
 		end
 		format.html { redirect_to(:controller => 'home', :action => 'index' )}
@@ -90,6 +89,7 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
 	@user = User.find(params[:id])
+	@user1 = User.find(current_user)
 	@user.font = params[:font]
 	@user.color = params[:color]
 	@user.size = params[:size]
@@ -122,20 +122,22 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    if @user.id == session[:id]
+    if @user.id == current_user.id
 	redirect_to(:controller => 'users', :action => 'index')
 	flash[:notice] = 'Can\'t Delete Yourself!!.'
     else
-	    @admin = User.find(session[:id])
-	if @admin.status == "administrator"
+	#    @admin = User.find(current_user)
+	#if @admin.status == "administrator"
 		@user.destroy
-		respond_to do |format|
-			UserMail.destroyUser_notification(@user).deliver
-		end
-	end
-
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
+	#	respond_to do |format|
+	#		UserMail.destroyUser_notification(@user).deliver
+	#	end
+	#end
+	redirect_to root_url
     end
+  end
+  
+  def found
+	@users = User.search(params[:search])
   end
 end

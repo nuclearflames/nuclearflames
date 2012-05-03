@@ -68,6 +68,9 @@
   <b>About Me:</b>
   <%=h @user.aboutme %>
 </p>
+<p>
+	<% if @user.name == @user1.name  %><%= link_to "Add " + @user.name + " " + @user.surname + " as a friend", friendships_path(:friend_id => @user), :method => :post %><% end %>
+</p>
 
 <div style="position:absolute; top:50px; right:0px;width:350px;">
 	<p>My Timeline:</p>
@@ -90,7 +93,7 @@
 	<% end %>
 	<p>
 		First Entry: <%= dateValue %>
-		<% if session[:id] == params[:id] %><%=h link_to 'Add to your timeline', new_timeline_path %><% end %>
+		<% if session[:id] != @user.id %><%=h link_to 'Add to your timeline', new_timeline_path %><% end %>
 	</p>
 	<div id="friendsList">
 
@@ -104,10 +107,8 @@
 	</div>
 </div>
 
-<% if @user.name != @user1.name %><%= link_to "Add As Friend", friendships_path(:friend_id => @user), :method => :post %>   <% end %>
- 
 <h1>My visited locations</h1>
-<% if session[:id] == params[:id] %><%= link_to 'Add to locations', new_location_path %><% end %>
+<% if session[:id] == @user.id %><%= link_to 'Add to locations', new_location_path %><% end %>
 <div id="mapCanvasUser"></div>
  
 <% if @user1.status="administrator" %>
