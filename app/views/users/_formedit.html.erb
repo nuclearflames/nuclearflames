@@ -79,7 +79,7 @@
 		<%= f.submit "Update Details" %>
 	  </div>
   <% end %>
-  <% if session[:id] && @user1.status == "Administrator" %>
+  <% if current_user.status == "Administrator" %>
   <div class="field" id="administrator">
   <u>Admin Section</u>
   <br />

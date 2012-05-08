@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120412121134) do
+ActiveRecord::Schema.define(:version => 20120501224213) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id",                       :null => false
@@ -81,16 +81,31 @@ ActiveRecord::Schema.define(:version => 20120412121134) do
     t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "name",                                              :null => false
-    t.string   "digest",                                            :null => false
-    t.string   "salt",                                              :null => false
-    t.integer  "rank",               :default => 0,                 :null => false
+  create_table "user_sessions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                                             :null => false
-    t.string   "status",             :default => "Inactive"
-    t.string   "surname",                                           :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name",                                               :null => false
+    t.integer  "rank",                :default => 0,                 :null => false
+    t.string   "persistence_token",                                  :null => false
+    t.string   "crypted_password",                                   :null => false
+    t.string   "password_salt",                                      :null => false
+    t.string   "single_access_token",                                :null => false
+    t.string   "perishable_token",                                   :null => false
+    t.integer  "login_count",         :default => 0,                 :null => false
+    t.integer  "failed_login_count",  :default => 0,                 :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email",                                              :null => false
+    t.string   "status",              :default => "Inactive"
+    t.string   "surname",                                            :null => false
     t.string   "alias"
     t.string   "aboutme"
     t.time     "birthday"
@@ -98,9 +113,9 @@ ActiveRecord::Schema.define(:version => 20120412121134) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.string   "font",               :default => "Times New Roman"
-    t.string   "color",              :default => "White"
-    t.integer  "size",               :default => 16
+    t.string   "font",                :default => "Times New Roman"
+    t.string   "color",               :default => "White"
+    t.integer  "size",                :default => 16
   end
 
 end

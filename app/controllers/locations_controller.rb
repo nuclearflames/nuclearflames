@@ -43,7 +43,7 @@ before_filter :authorizeAdmin, :only => ['index']
   # POST /locations.xml
   def create
     @location = Location.new(params[:location])
-	@location.user_id = session[:id]
+	@location.user_id = current_user.id
 	@location.status = "active"
     respond_to do |format|
       if @location.save
@@ -76,7 +76,7 @@ before_filter :authorizeAdmin, :only => ['index']
   # DELETE /locations/1.xml
   def destroy
     @location = Location.find(params[:id])
-	if @location.user_id == session[:id]
+	if @location.user_id == current_user.id
     @location.destroy
 end
     respond_to do |format|

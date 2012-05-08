@@ -1,0 +1,17 @@
+<h1>To logon please input your details here...</h1>
+<div id="logonForm">
+	<%= form_for @user_session, :as => :user_session, :url => { :action => "create" } do |f| %>
+		<%= f.label :email %>
+		<%= f.text_field :email, :class => "logonFields" %><br />
+		<br />
+		<%= f.label :password %>
+		<%= f.password_field :password, :class => "logonFields" %><br />
+		<br />
+		
+		<%= f.submit "Login", :class => "logonFields" %>
+		<br /><br />
+		<%= f.check_box :remember_me %><%= f.label :remember_me %>
+		<br />
+		<%= link_to 'Signup', '../users/new', :class => "signUP"  %>
+	<% end %>
+</div>

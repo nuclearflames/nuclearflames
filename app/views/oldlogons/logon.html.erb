@@ -1,0 +1,9 @@
+<h1>To logon please input your details here...</h1>
+<div id="logonForm">
+	<% form_tag({ :action => 'logon' })  do %>
+		Email:<%= text_field_tag(:email, params[:email], :class => "logonFields") %><br /><br />
+		Password:<%= password_field_tag(:password, params[:password], :class => "logonFields") %><br /><br />
+		<%= submit_tag 'Login', :class => "logonFields" %><br /><br />
+		<%= link_to 'Signup', '../users/new', :class => "signUP"  %>
+	<% end %> 
+</div>

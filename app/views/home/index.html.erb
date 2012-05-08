@@ -1,17 +1,17 @@
 <div id="menu">
 	<ul>
 		<li>
-		<% if session[:id] == nil %>
-			<%= link_to('Login', '../logons/logon') %>
+		<% if current_user == nil %>
+			<%= link_to('Login', '../../login') %>
 			<br />
-			<%= link_to('Signup', '../users/new') %>
+			<%= link_to('Signup', '../../users/new') %>
 		<% end %>
 		<br />
 		<li>
-		<% if session[:id] != nil %>
-			<%= link_to('My Profile', '../home') %>
+		<% if current_user != nil %>
+			<%= link_to('My Profile', '../../home') %>
 			<br />
-			<%= link_to('Logoff', '../logons/logoff') %>
+			<%= link_to('Logoff', '../../logoff') %>
 			<% end %>
 		<br />
 		<%= link_to('Forum', :controller => "topics", :action => "topicsList") %>
@@ -25,6 +25,12 @@
 	</ul>
 </div>
 <div style="position:absolute; bottom:5px;">
+	<h2>About this website:</h2>
+	<p>
+		This website is an expression of some of the skills that I have in Ruby on Rails, JavaScript and Mysql/Postgres.
+		<br />
+		To view my profile navigate here: <%= link_to "James Grant", "users/2" %>
+	</p>
 	<h2>To do list:</h2>
 	<ul>
 		<u>Future Releases</u>

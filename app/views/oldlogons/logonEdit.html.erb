@@ -1,0 +1,9 @@
+
+<h1>To validate your edit attempt please re-input your login details to validate yourself...</h1>
+<div id="logonForm">
+	<% form_tag({ :action => 'logonEdit' })  do %>
+		Email:<%= text_field_tag(:email, params[:email], :class => "logonFields") %><br /><br />
+		Password:<%= password_field_tag(:password, params[:password], :class => "logonFields") %><br /><br />
+		<%= submit_tag 'Validate', :class => "logonFields" %>
+	<% end %> 
+</div>
