@@ -17,7 +17,7 @@ class StoragesController < ApplicationController
   def show
     @storage = Storage.find(params[:id])
     
-@user = User.find(session[:id])
+@user = User.find(current_user)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @storage }
@@ -38,7 +38,7 @@ class StoragesController < ApplicationController
   # GET /storages/1/edit
   def edit
     @storage = Storage.find(params[:id])
-	if session[:id] != @storage.user_id
+	if current_user.id != @storage.user_id
 		redirect_to(:action => "show")
 		flash[:notice] = "Viewing this piece of data"
 	end
@@ -48,8 +48,8 @@ class StoragesController < ApplicationController
   # POST /storages.xml
   def create
     @storage = Storage.new(params[:storage])
-    @storage.user_id = session[:id]
-    @storaging = session[:id]
+    @storage.user_id = current_user.id
+    @storaging = current_user.id
     
     respond_to do |format|
       if @storage.save
@@ -84,7 +84,7 @@ class StoragesController < ApplicationController
   # DELETE /storages/1.xml
   def destroy
     @storage = Storage.find(params[:id])
-	if @storage.user_id == session[:id]
+	if @storage.user_id == current_user.id
     @storage.destroy
 end
 
