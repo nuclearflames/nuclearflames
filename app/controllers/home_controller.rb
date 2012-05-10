@@ -3,7 +3,7 @@ class HomeController < ApplicationController
  skip_before_filter :authorizeAdmin, :only => ['index', 'resendEmail']
 	  def index
 		@users = User.all
-		if session[:id] 
+		if current_user
 			@user = User.find(current_user) 
 		end
 	  end

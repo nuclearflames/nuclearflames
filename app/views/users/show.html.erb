@@ -95,7 +95,7 @@
 	<% end %>
 	<p>
 		First Entry: <%= dateValue %>
-		<% if current_user != @user %><%=h link_to 'Add to your timeline', new_timeline_path %><% end %>
+		<% if current_user == @user %><%=h link_to 'Add to your timeline', new_timeline_path %><% end %>
 	</p>
 	<div id="friendsList">
 

@@ -3,7 +3,7 @@ class TimelinesController < ApplicationController
   # GET /timelines.xml
   
   def index
-    @user = User.find(session[:id])
+    @user = User.find(current_user)
     @timelines = Timeline.all
 
     respond_to do |format|
@@ -14,10 +14,10 @@ class TimelinesController < ApplicationController
   # GET /timelines/1
   # GET /timelines/1.xml
   def show
-	@user = User.find_by_id(session[:id])
+	@user = User.find(current_user)
 	@timeline = Timeline.find(params[:id])
 	
-	if @timeline.user_id == session[:id] || @user.status == "Administrator"
+	if @timeline.user_id == current_user.id || @user.status == "Administrator"
 	    respond_to do |format|
 	      format.html # show.html.erb
 	      format.xml  { render :xml => @timeline }
@@ -41,9 +41,9 @@ class TimelinesController < ApplicationController
   # GET /timelines/1/edit
   def edit
     @timeline = Timeline.find(params[:id])
-    @user = User.find(session[:id])
+    @user = User.find(current_user)
     
-	if @timeline.user_id != session[:id] ||  @user.status != "Administrator"
+	if @timeline.user_id != current_user.id ||  @user.status != "Administrator"
 		redirect_to(:action => "show")
 	end
   end
@@ -52,7 +52,7 @@ class TimelinesController < ApplicationController
   # POST /timelines.xml
   def create
     @timeline = Timeline.new(params[:timeline])
-	@timeline.user_id = session[:id].to_i
+	@timeline.user_id = current_user.id.to_i
 	if @timeline.date == nil
 		@timeline.date = Date.current
 	end
@@ -88,7 +88,7 @@ class TimelinesController < ApplicationController
   # DELETE /timelines/1.xml
   def destroy
     @timeline = Timeline.find(params[:id])
-	if @timeline.user_id == session[:id]
+	if @timeline.user_id == current_user.id
 		@timeline.destroy
 	end
 
