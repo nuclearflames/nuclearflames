@@ -42,7 +42,7 @@ Posts about <%=h @thred.title %>:
 </table>
 
 <div id="newPost">
-<% if session[:id] %>
+<% if current_user %>
 <%= link_to 'Create new Post', new_post_path %></td>
 <!--
 <%= render 'posts/form' %>

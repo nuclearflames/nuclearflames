@@ -35,7 +35,7 @@ skip_before_filter :authorizeUser, :only => ['show']
 
   # GET /posts/1/edit
   def edit
-    @user = User.find(session[:id])
+    @user = User.find(current_user)
     @post = Post.find(params[:id])
     if @post.user_id != session[:id] || @user.status != "Administrator"
 	redirect_to(post_path(@post.id))
@@ -47,7 +47,7 @@ skip_before_filter :authorizeUser, :only => ['show']
   # POST /posts.xml
   def create
     @post = Post.new(params[:post])
-    @post.user_id = session[:id]
+    @post.user_id = current_user.id
     @post.thred_id = session[:threds_id]
 
     respond_to do |format|
@@ -82,7 +82,7 @@ skip_before_filter :authorizeUser, :only => ['show']
   # DELETE /posts/1.xml
   def destroy
     @post = Post.find(params[:id])
-	if @post.user_id == session[:id]
+	if @post.user_id == current_user.id
     @post.destroy
 end
 

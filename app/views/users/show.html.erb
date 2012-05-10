@@ -95,7 +95,7 @@
 	<% end %>
 	<p>
 		First Entry: <%= dateValue %>
-		<% if current_user.id != @user.id %><%=h link_to 'Add to your timeline', new_timeline_path %><% end %>
+		<% if current_user != @user %><%=h link_to 'Add to your timeline', new_timeline_path %><% end %>
 	</p>
 	<div id="friendsList">
 
@@ -110,7 +110,7 @@
 </div>
 
 <h1>My visited locations</h1>
-<% if current_user.id == @user.id %><%= link_to 'Add to locations', new_location_path %><% end %>
+<% if current_user == @user %><%= link_to 'Add to locations', new_location_path %><% end %>
 <div id="mapCanvasUser"></div>
  
 <% if @user1.status="administrator" %>

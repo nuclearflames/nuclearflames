@@ -28,7 +28,7 @@
 </table>
 <br />
 <div id="newPost">
-<% if session[:id] %>
+<% if current_user %>
     <%= link_to 'Create a New Topic', new_topic_path %></td>
 
 <!--

@@ -40,7 +40,7 @@ About <%= @topic.title %>:
 </table>
 
 <div id="newPost">
-<% if session[:id] %>
+<% if current_user %>
 <%= link_to 'Create new Thread', new_thred_path %></td>
 <!--
 <%= render 'threds/form' %>
