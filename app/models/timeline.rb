@@ -5,7 +5,6 @@ class Timeline < ActiveRecord::Base
 	
 	has_attached_file :file, 
 	:storage => :s3,
-	:bucket => ENV['S3_BUCKET_NAME'],
 	:s3_credentials => S3_CREDENTIALS,
 	:url  => "/timelinefiles/:id/:basename.:extension",
 	:path => "websites/nuclearflames/timelinefiles/:id/:basename.:extension"

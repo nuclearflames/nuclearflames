@@ -6,7 +6,6 @@ class Storage < ActiveRecord::Base
 	
 has_attached_file :file, 
 	:storage => :s3,
-	:bucket => ENV['S3_BUCKET_NAME'],
 	:s3_credentials => S3_CREDENTIALS,
 	:url  => "/storagefiles/:id/:basename.:extension",
 	:path => "websites/nuclearflames/storagefiles/:id/:basename.:extension"

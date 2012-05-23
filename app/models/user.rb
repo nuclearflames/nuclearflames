@@ -26,8 +26,7 @@ class User < ActiveRecord::Base
 		:small  => "75x75>",
 		:standard  => "400x400>",
 		},
-	:storage => :s3,    
-	:bucket => ENV['S3_BUCKET_NAME'],
+	:storage => :s3,
 	:s3_credentials => S3_CREDENTIALS,
 	:url  => "/imagefiles/:id/:style/:basename.:extension",
 	:path => "websites/nuclearflames/imagefiles/:id/:style/:basename.:extension"
