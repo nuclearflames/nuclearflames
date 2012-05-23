@@ -26,8 +26,11 @@ class User < ActiveRecord::Base
 		:small  => "75x75>",
 		:standard  => "400x400>",
 		},
-	:url  => "/documents/userimages/:id/:style/:basename.:extension",
-	:path => ":rails_root/public/documents/userimages/:id/:style/:basename.:extension"
+	:storage => :s3,    
+	:bucket => ENV['S3_BUCKET_NAME'],
+	:s3_credentials => S3_CREDENTIALS,
+	:url  => "/imagefiles/:id/:style/:basename.:extension",
+	:path => "websites/nuclearflames/imagefiles/:id/:style/:basename.:extension"
 
 	validates_attachment_presence :photo, :message => "is missing"
 	validates_attachment_size :photo, :less_than => 1.megabytes, :message => "is larger than 1MB"

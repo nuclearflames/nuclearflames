@@ -15,7 +15,7 @@
     <td><%= storage.user_id %></td>
     <td><%= link_to 'Show', storage %></td>
     <td><%= link_to 'Edit', edit_storage_path(storage) %></td>
-    <td><%= link_to 'Destroy', storage, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Destroy', storage, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

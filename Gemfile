@@ -10,6 +10,8 @@ gem 'rails', '3.2.0'
 gem 'pg'
 gem 'paperclip', '~> 2.4.5'
 
+gem 'aws-s3'
+
 #gem 'Authlogic'
 gem 'authlogic'
 

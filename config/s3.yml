@@ -1,0 +1,12 @@
+development:
+  bucket: nuclearflames-dev
+  access_key_id: AKIAJ2LTRS3LB5J5M57A
+  secret_access_key: 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
+test:
+  bucket: nuclearflames-test
+  access_key_id: AKIAJ2LTRS3LB5J5M57A
+  secret_access_key: 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
+production:
+  bucket: nuclearflames-pro
+  access_key_id: AKIAJ2LTRS3LB5J5M57A
+  secret_access_key: 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

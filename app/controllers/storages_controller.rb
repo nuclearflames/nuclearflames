@@ -84,14 +84,13 @@ class StoragesController < ApplicationController
   # DELETE /storages/1.xml
   def destroy
     @storage = Storage.find(params[:id])
-	if @storage.user_id == current_user.id
-    @storage.destroy
-end
-
-    respond_to do |format|
-      format.html { redirect_to(:controller => 'home', :action => 'storage') }
-	flash[:notice] = 'Storage was successfully deleted.'
-      format.xml  { head :ok }
+	if @storage.user_id == current_user.id || current_user.status == "Administrator"
+	    @storage.destroy
+	    respond_to do |format|
+	      format.html { redirect_to(:controller => 'home', :action => 'storage') }
+		flash[:notice] = 'Storage was successfully deleted.'
+	      format.xml  { head :ok }
+	end
     end
   end
 end

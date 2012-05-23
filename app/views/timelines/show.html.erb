@@ -7,4 +7,5 @@ File: <%= link_to "Download file", @timeline.file.url() %>
 <p>
 <%= link_to 'Edit', edit_timeline_path(@timeline) %> |
 <%= link_to 'Timelines', :action => "timeline", :controller => "home" %>
+<%= button_to 'Destroy', timeline_path, :confirm => 'Are you sure?', :method => :delete %>
 </p>

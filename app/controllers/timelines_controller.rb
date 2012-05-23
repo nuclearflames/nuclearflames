@@ -88,7 +88,7 @@ class TimelinesController < ApplicationController
   # DELETE /timelines/1.xml
   def destroy
     @timeline = Timeline.find(params[:id])
-	if @timeline.user_id == current_user.id
+	if @timeline.user_id == current_user.id || current_user.status == "Administrator"
 		@timeline.destroy
 	end
 

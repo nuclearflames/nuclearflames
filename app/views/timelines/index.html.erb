@@ -18,7 +18,7 @@
     <td><%= timeline.date %></td>
     <td><%= link_to 'Show', timeline %></td>
     <td><%= link_to 'Edit', edit_timeline_path(timeline) %></td>
-    <td><%= link_to 'Destroy', timeline, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Destroy', timeline, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
