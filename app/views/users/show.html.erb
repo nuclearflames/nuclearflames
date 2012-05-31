@@ -51,28 +51,29 @@
 	//-->
 	</script>
 <% end %>
-
-<p>
-  <%=h image_tag @user.photo.url(:small) %>
-</p>
-<p>
-  <b>Name:</b>
-  <%=h @user.name %>
-  <%=h @user.surname %>
-</p>
-<p>
-  <b>Email address:</b>
-  <%=h @user.email %>
-</p>
-<p>
-  <b>About Me:</b>
-  <%=h @user.aboutme %>
-</p>
-<p>
-	<% if @user != @user1  %>
-		<%= button_to "Add " + @user.name + " " + @user.surname + " as a friend", friendships_path(:friend_id => @user.id), :method => :post  %>
-	<% end %>
-</p>
+<div id="information">
+	<p>
+		<%=h image_tag @user.photo.url(:small) %>
+	</p>
+	<p>
+	  <b>Name:</b>
+		<%=h @user.name %>
+		<%=h @user.surname %>
+	</p>
+	<p>
+		<b>Email address:</b>
+		<%=h @user.email %>
+	</p>
+	<p>
+		<b>About Me:</b>
+		<%=h @user.aboutme %>
+	</p>
+	<p>
+		<% if @user != @user1  %>
+			<%= button_to "Add " + @user.name + " " + @user.surname + " as a friend", friendships_path(:friend_id => @user.id), :method => :post  %>
+		<% end %>
+	</p>
+</div>
 
 <div style="position:absolute; top:50px; right:0px;width:350px;">
 	<p>My Timeline:</p>

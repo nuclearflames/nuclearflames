@@ -37,7 +37,7 @@ skip_before_filter :authorizeUser, :only => ['show']
   def edit
     @user = User.find(current_user)
     @post = Post.find(params[:id])
-    if @post.user_id != session[:id] || @user.status != "Administrator"
+    if @post.user_id != current_user.id || @user.status != "Administrator"
 	redirect_to(post_path(@post.id))
 	flash[:notice] = "Can't Edit what aint urs!! :O"
     end

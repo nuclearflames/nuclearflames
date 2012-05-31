@@ -2,9 +2,7 @@
 	<ul>
 		<li>
 		<% if current_user == nil %>
-			<%= link_to('Login', '../../login') %>
-			<br />
-			<%= link_to('Signup', '../../users/new') %>
+			<%= render :template => 'user_sessions/new' %>
 		<% end %>
 		<br />
 		<li>
@@ -22,40 +20,13 @@
 				<%= link_to('Click Here to resend account activation email', '../../home/resendEmail') %>
 			<% end %>
 		</li>
-	</ul>
-</div>
-<div style="position:absolute; bottom:5px;">
-	<h2>About this website:</h2>
-	<p>
-		This website is an expression of some of the skills that I have in Ruby on Rails, JavaScript and Mysql/Postgres.
-		<br />
-		To view my profile navigate here: <%= link_to "James Grant", "../../users/2" %>
-	</p>
-	<h2>To do list:</h2>
-	<ul>
-		<u>Future Releases</u>
+	<div style="font-size:18px; width: 400px;">
+		<li>About this website:</li>
 		<li>
-			Create a blog
+			This website is an expression of some of the skills that I have in Ruby on Rails, JavaScript and Mysql/Postgres.
+			<br />
+			To view my profile navigate here: <%= link_to "James Grant", "../../users/2" %>
 		</li>
-		<u>Bugs, glitch fixes, to do's:</u>
-		<li>
-			Font-sizes, colours, profile photos are auto deleted from the server for unkown reasons, user auto logs on after signup - fix
-		</li>
-		<u>New Stuff:</u>
-		<li>
-			10/05: Redeveloped the login script with Authlogic
-		</li>
-		<li>
-			28/04: General refinements, website being improved
-		</li>
-		<li>
-			06/02: Added a locations feature, you can now post a location
-		</li>
-		<li>
-			29/01: Added ability to change fonts, sizes and colours
-		</li>
-		<li>
-			28/01: Added a new portfolio feature. Save files in date order or as a seperate storage section.
-		</li>
-	</ul>
+		</ul>
+	</div>
 </div>
