@@ -1,6 +1,6 @@
 <p>To logon please input your details here...</p>
 <div id="logonForm">
-	<%= form_for @user_session, :as => :user_session, :url => { :action => "create" } do |f| %>
+	<%= form_for @user_session, :as => :user_session, :url => { :controller => "user_sessions", :action => "create" } do |f| %>
 		<%= f.label :email %>
 		<%= f.text_field :email, :class => "logonFields" %><br />
 		<br />

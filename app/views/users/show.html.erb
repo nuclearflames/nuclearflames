@@ -51,26 +51,32 @@
 	//-->
 	</script>
 <% end %>
-<div id="information">
-	<p>
+
+<div id="information" style="font-size:18px; width: 400px;">
+	<p class="information">
 		<%=h image_tag @user.photo.url(:small) %>
+		<br />
 	</p>
-	<p>
+	<p class="information">
 	  <b>Name:</b>
 		<%=h @user.name %>
 		<%=h @user.surname %>
+		<br />
 	</p>
-	<p>
+	<p class="information">
 		<b>Email address:</b>
 		<%=h @user.email %>
+		<br />
 	</p>
-	<p>
+	<p class="information">
 		<b>About Me:</b>
 		<%=h @user.aboutme %>
+		<br />
 	</p>
-	<p>
+	<p class="information">
 		<% if @user != @user1  %>
 			<%= button_to "Add " + @user.name + " " + @user.surname + " as a friend", friendships_path(:friend_id => @user.id), :method => :post  %>
+			<br />
 		<% end %>
 	</p>
 </div>
@@ -109,10 +115,11 @@
 		<% end %>
 	</div>
 </div>
-
-<h1>My visited locations</h1>
-<% if current_user == @user %><%= link_to 'Add to locations', new_location_path %><% end %>
-<div id="mapCanvasUser"></div>
+<div maps="">
+	<h1>My visited locations:</h1>
+	<% if current_user == @user %><%= link_to 'Add to locations', new_location_path %><% end %>
+	<div id="mapCanvasUser"></div>
+</div>
  
 <% if @user1.status="administrator" %>
 	<div id="administrator">
