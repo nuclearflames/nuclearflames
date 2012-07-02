@@ -38,31 +38,11 @@ class User < ActiveRecord::Base
 	def create_digest(message)
 		Digest::SHA2.hexdigest(message + self.password_salt)
 	end
-#
-#	def password
-#		@password
-#	end
-#
-#	def password=(password)
-#		@password = password
-#		return if password.blank?
-#			create_salt
-#			self.digest = create_digest(password)
-#		end
-#	end
-#
-#	def self.authenticate(email, password)
-#		user = find_by_email(email)
-#		if user and user.digest != user.create_digest(password)
-#			user = nil
-#		end
-#		user
-#	end
-#
+	
 	def verify_id_digest(id_digest)
 		id_digest == create_digest(self.id.to_s)
 	end
-#
+
 	def self.search(search)
 		if search
 			find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
@@ -71,19 +51,9 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def setStatus=(setStatus)
+	def setStatus(setStatus)
 		@status = setStatus
 	end
 
 	protected
-		
-#	def check_password
-#		if digest.blank?
-#			errors.add(:password, 'missing')
-#		end
-#	end
-#	
-#	def create_salt
-#		self.salt = self.object_id.to_s + rand.to_s
-#	end
 end

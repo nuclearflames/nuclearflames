@@ -42,9 +42,10 @@ div.field, div.actions {
 
 #error_explanation {
   position:absolute;
-  bottom:0px;
-  left: 5px;
-  width: 450px;
+  top:50px;
+  left: 725px;
+  height: 400px;
+  width: 200px;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
@@ -79,11 +80,11 @@ div.field, div.actions {
 	
 	margin-top: 50px;
 	
-	width: 1000px;
+	width: 1100px;
 	
 	height: 750px;
 	
-	background-image:url(<%=asset_path "websiteFlame_BG.jpg" %>);
+	background-image:url(<%=asset_path "websiteFlame_BG02.jpg" %>);
 	
 }
 
@@ -170,7 +171,6 @@ div.field, div.actions {
 	
 	border-style: outset;
 	
-	background-image: url(<%=asset_path "blackGradBG.png" %>);
 	
 	padding: 5px;
 	
@@ -190,20 +190,21 @@ div.field, div.actions {
 
 #form {
 	
+	position: absolute;
+	
 	border: solid;
+
+	color: grey;
+	
+	border-width: 0px 0px 0px 1px;
 	
 	width: 350px;
 	
-}
-#form {
+	width: 70%;
 	
-	position: absolute;
+	background-color: #000000;
 	
-	width: 90%;
-	
-	background-color: black;
-	
-	left: 5%;
+	left: 2%;
 	
 }
 
@@ -211,15 +212,19 @@ div.field, div.actions {
 	
 	text-decoration: underline;
 	
+	color: white;
+	
+	text-align: left;
+	
+	border-width: 0px 1px 2px 0px;
+	
 }
 
-#form th, td, tr  {
+#form td, tr  {
 	
 	border: solid;
 	
-	border-color: green;
-	
-	border-width: 1px;
+	border-width: 0px 1px 4px 0px;
 	
 }
 
@@ -237,9 +242,17 @@ div.field, div.actions {
 	
 	position:absolute;
 	
-	right: 30px;
+	right: 0px;
 	
-	top: 70px;
+	top: 20px;
+	
+	height: 350px;
+	
+	width: 220px;
+	
+	background-color:black;
+	
+	border: solid 2px white;
 
 }
 
@@ -253,11 +266,39 @@ div.field, div.actions {
 	
 	position:absolute;
 	
-	bottom: 50px;
+	bottom: 20px;
 	
 	right: 0px;
 	
-	background-color: black;
+	height: 250px;
+	
+	width: 200px;
+	
+	background-color: green;
+	
+	border-style: solid;
+	
+	border-color: white;
+	
+}
+
+#Useradministrator {
+	
+	position:absolute;
+	
+	top: 20px;
+	
+	right: 0px;
+	
+	height: 250px;
+	
+	width: 200px;
+	
+	background-color: green;
+	
+	border-style: solid;
+	
+	border-color: white;
 	
 }
 
@@ -285,20 +326,28 @@ div.field, div.actions {
 	
 }
 
+#newLocation {
+	position:absolute;
+	height: 200px;
+	width:100px;
+	left: 450px;
+	top:55px;
+}
+
 #mapCanvas {
 	position:absolute;
 	z-index:10;
-	right :5px;
-	bottom:100px;
+	left:5px;
+	top:125px;
 	width:400px;
-	height:400px;
+	height:600px;
 }
 
 #mapCanvasUser {
-	position:absolute;
+	position:relative;
 	z-index:10;
 	left:10px;
-	bottom:100px;
+	top:0px;
 	width:400px;
 	height:300px;
 }
@@ -372,23 +421,45 @@ div.field, div.actions {
 }
 
 #homeTable {
-	width:300px;
-	height:500px;
+	width:600px;
+	height:200px;
 	font-size:30px;
+	border-style:none;
 }
 
 #information {
-	position: relative;
-	left: 30px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
 	height:300px;
 	width: 400px;
 }
 
 .information {
-	position: relative;
+	position: absoulute;
+	top: 10px;
+	left: 100px;
 	width: 400px;
 }
 
 #maps {
-	position: relative;
+	position: absolute;
+	top:150px;
+}
+
+.created_at {
+	font-size: 10px;
+}
+
+#timeline {
+	position:absolute; 
+	top:25px; 
+	left:450px;
+	width:350px;
+}
+
+#column2 {
+	position:absolute;
+	left:425px;
+	top:25px;
 }

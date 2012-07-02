@@ -14,25 +14,30 @@ class UserSessionsController < ApplicationController
 					redirect_to login_path
 					flash[:notice] = 'Activate your account to log in.'
 				elsif @user.status != "Inactive" and @user_session.save
-					flash.now[:notice] = 'Logged in.'
 					redirect_to user_path(current_user)
+					flash[:notice] = 'Logged in.'
 				else
-					flash.now[:notice] = 'Failed Log in.'
 					redirect_to login_path
+					flash[:notice] = 'Failed Log in.'
 				end
 			else
-				flash.now[:notice] = 'Failed Log in.'
 				redirect_to login_path
+				flash[:notice] = 'Failed Log in.'
 			end
 		else current_user
-			@user_session = UserSession.new(params[:user_session])
-			if @user_session.save
-				session[:edit] = true;
-				flash.now[:notice] = 'Activated edit attempt.'
-				redirect_to edit_path				
-			else
-				flash.now[:notice] = 'Failed edit login attempt.'
+			if current_user.status = "Inactive"
+				current_user_session.destroy
 				redirect_to login_path
+			else
+				@user_session = UserSession.new(params[:user_session])
+				if @user_session.save
+					session[:edit] = true;
+					redirect_to edit_path				
+					flash.now[:notice] = 'Activated edit attempt.'
+				else
+					redirect_to login_path
+					flash.now[:notice] = 'Failed edit login attempt.'
+				end
 			end
 		end			
 	end

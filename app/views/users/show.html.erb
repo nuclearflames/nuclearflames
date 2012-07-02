@@ -52,24 +52,23 @@
 	</script>
 <% end %>
 
-<div id="information" style="font-size:18px; width: 400px;">
-	<p class="information">
+<div id="picture">
+	<p>
 		<%=h image_tag @user.photo.url(:small) %>
 		<br />
 	</p>
+</div>
+<div id="information">
 	<p class="information">
-	  <b>Name:</b>
 		<%=h @user.name %>
 		<%=h @user.surname %>
 		<br />
 	</p>
 	<p class="information">
-		<b>Email address:</b>
-		<%=h @user.email %>
+		<%= link_to "Email Address", @user.email %>
 		<br />
 	</p>
 	<p class="information">
-		<b>About Me:</b>
 		<%=h @user.aboutme %>
 		<br />
 	</p>
@@ -81,8 +80,8 @@
 	</p>
 </div>
 
-<div style="position:absolute; top:50px; right:0px;width:350px;">
-	<p>My Timeline:</p>
+<div id="timeline">
+	<h3>My Timeline:</h3>
 	<p>
 		<% dateValue = Date.today %>
 		<% int = 1 %>
@@ -102,7 +101,11 @@
 	<% end %>
 	<p>
 		First Entry: <%= dateValue %>
-		<% if current_user == @user %><%=h link_to 'Add to your timeline', new_timeline_path %><% end %>
+		<% if current_user == @user %>
+			<p>
+				<%=h link_to 'Add to your timeline', new_timeline_path %>
+			</p>
+		<% end %>
 	</p>
 	<div id="friendsList">
 
@@ -115,22 +118,24 @@
 		<% end %>
 	</div>
 </div>
-<div maps="">
-	<h1>My visited locations:</h1>
-	<% if current_user == @user %><%= link_to 'Add to locations', new_location_path %><% end %>
+<div id="maps">
+	<h3>My visited locations:</h3>
 	<div id="mapCanvasUser"></div>
+	<% if current_user == @user %>
+		<%= link_to 'Add to locations', new_location_path %>
+	<% end %>
 </div>
  
 <% if @user1.status="administrator" %>
-	<div id="administrator">
+	<div id="Useradministrator">
 		<p>
-			Admin Panel:
+			Admin Panel of user information:
 		</p>
 		<p>
 			<b>ID:</b>
-			<%=h @user.id %>, 
+			<%=h @user.id %>, <br />
 			<b>Rank:</b>
-			<%=h @user.rank %>,
+			<%=h @user.rank %>,<br />
 			<b>Status:</b>
 			<%=h @user.status %>
 		</p>

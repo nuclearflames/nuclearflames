@@ -54,13 +54,12 @@ class UsersController < ApplicationController
 	@user1 = User.find(current_user)
     end
     @user = User.new(params[:user])
-
     respond_to do |format|
       if @user.save
 	if @user.status == "Inactive"
+		session = UserSession.find
+		session.destroy if session
 		if @user.email == "nuclearflames@ymail.com" || @user.email == "jamesgrant1993@yahoo.com"
-			#@user.status = "Administrator"
-			#@user.save
 			UserMail.admin_registration_confirmation(@user).deliver
 			flash[:notice] = '1st Administrator was successfully created, please check you email to activate the account.'
 		else

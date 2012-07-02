@@ -46,10 +46,9 @@ skip_before_filter :authorizeUser, :only => ['show']
   # POST /posts
   # POST /posts.xml
   def create
-    @post = Post.new(params[:post])
-    @post.user_id = current_user.id
-    @post.thred_id = session[:threds_id]
-
+	@post = Post.new(params[:post])
+	@post.user_id = current_user.id
+	@post.thred_id = session[:threds_id]
     respond_to do |format|
       if @post.save
         format.html { redirect_to(thred_path(@post.thred_id)) }
@@ -80,11 +79,11 @@ skip_before_filter :authorizeUser, :only => ['show']
 
   # DELETE /posts/1
   # DELETE /posts/1.xml
-  def destroy
-    @post = Post.find(params[:id])
-	if @post.user_id == current_user.id
-    @post.destroy
-end
+	def destroy
+		@post = Post.find(params[:id])
+		if @post.user_id == current_user.id
+		@post.destroy
+	end
 
     respond_to do |format|
       format.html { redirect_to(:controller => "topics", :action => "topicsList") }

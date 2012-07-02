@@ -1,39 +1,34 @@
 <h1>
-About <%= @topic.title %>:
+	About <%= @topic.title %>:
 </h1>
-<p>
-	<b>Thread description:</b>
-	<%= @topic.description %>
-</p>
 <table id="form">
 	<tr>
 		<th  colspan="2">
-		Description:
+			Description:
 		</th>
-		Description:
+			Description:
 		</th>
 		<th colspan="2">
-		Options:
+			Options:
 		</th>
 	</tr>
 <% @threads.each do |threads| %>
 	<tr>
 		<td  width="30px">
-		<%= threads.id %>
+			<%= threads.id %>
 		</td>
 		<td>
-		<%=h link_to threads.title, thred_path(threads.id) %><br />
-		<%=h threads.description %>
+			<%=h link_to threads.title, thred_path(threads.id) %><br />
+			<%=h threads.description %>
 		</td>
 		<td width="50px">
-		<%= link_to 'Owner', user_path(threads.user_id) %>
-		<%=  %>
+			<%= link_to 'Owner', user_path(threads.user_id) %>
 		</td>
-		<% if threads.user_id == session[:id] %>
-		<td width="130px">
-		<%= link_to 'Edit yoot Thread', edit_thred_path(threads) %><br />
-		<%= link_to 'Delete your thread', threads, :confirm => 'Are you sure?', :method => :delete %>
-		</td>
+		<% if threads.user_id == current_user.id %>
+			<td width="130px">
+				<%= link_to 'Edit your thread', edit_thred_path(threads) %><br />
+				<%= link_to 'Delete your thread', threads, :confirm => 'Are you sure?', :method => :delete %>
+			</td>
 		<% end %>
 	</tr>
 <% end %>
@@ -41,19 +36,14 @@ About <%= @topic.title %>:
 
 <div id="newPost">
 <% if current_user %>
-<%= link_to 'Create new Thread', new_thred_path %></td>
-<!--
-<%= render 'threds/form' %>
--->
+	<%= render 'threds/form' %>
 <% end %>
 </div>
 <div id="description">
-<p>
-	Title:
-	<%= @topic.title %>
-	Owner ID:
-	<%= link_to @topic.user_id, user_path(@topic.user_id) %>
-</p>
-<p>Edit this topics details: <%= link_to 'Edit', edit_topic_path(@topic) %>
-<br />Or go back: <%= link_to 'Back', :action => "topicsList" %>
+	<p>
+		Title:
+		<%= @topic.title %>
+		Owner ID:
+		<%= link_to @topic.user_id, user_path(@topic.user_id) %>
+	</p>
 </div>

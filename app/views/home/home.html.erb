@@ -1,47 +1,23 @@
 <table id="homeTable">
 	<tr>
-		<th><%= link_to current_user.name + " " + current_user.surname, user_path(current_user.id) %></th>
+		<th colspan="2"><%= link_to current_user.name + " " + current_user.surname, user_path(current_user.id) %></th>
 	</tr>
 	<tr>
-		<td width="150px"><%= link_to 'Edit your profile', login_path %></td>
-	</tr>
-	<tr>
+		<td style="width=100px"><%= link_to 'Edit your profile', login_path %></td>
+
 		<td><%= link_to('View forum', 'topicsList') %></td>
-	</tr>
-	<tr>
+
 		<td><%= link_to('View portfoilo', 'portfolio') %></td>
-	</tr>
-	<tr>
+
 		<td><%= link_to('View visited locations', 'location') %></td>
 	</tr>
 	<tr>
-		<td>
+		<td colspan="2">
 		Find a friend:
 			<%= form_tag ('users/' + current_user.id.to_s + '/found'), :method => 'get' do %>
 					<%= text_field_tag :search, params[:search] %>
 					<%= submit_tag "Search", :name => nil %>
 			<% end %>
 		</td>
-	</tr>
-</table>
-
-	<% if current_user.status == 'Administrator' %>
-		<br />
-		<table id="administrator">
-		<tr>
-			<td><u>Admin Stuff:</u></td>
-		</tr>
-			<td><%= link_to "Create a new profile", :controller => 'users', :action => 'new' %></td>
-			<td><%= link_to "View all profiles", :controller => 'users', :action => 'index' %></td>
-			<td><%= link_to "View all Stored data", :controller => 'storages', :action => 'index' %></td>
-		<tr>
-			<td>User Created: <%= current_user.created_at %></td>
-			<td>User ID: <%= current_user.id %></td>
-			<td>User Status: <%= current_user.status %></td>
-		</tr>
-		<tr>
-			<td>User Rank: <%= current_user.rank %></td>
-		</tr>
-	<% end %>
 	</tr>
 </table>

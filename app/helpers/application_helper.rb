@@ -1,7 +1,9 @@
 module ApplicationHelper
-	def user
-		if session[:id] != nil
-			@user = User.find(session[:id]) 
+	def GetUser(userid)
+		if userid.nil?
+			"No user defined"
+		else
+			User.find(userid)
 		end
 	end
 end

@@ -1,46 +1,48 @@
 <% content_for :maps do %>
-<script type="text/javascript">
-<!--
-var marker;
-var latlng;
-function initialize() 
-{
-      latlng = new google.maps.LatLng(51.5, 0.5);
-        var myOptions = {
-          center: latlng,
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("mapCanvas"),
-            myOptions);
-	marker = new google.maps.Marker({
-		position: latlng,
-		map: map,
-		title:"Grab and Drag Me!!",
-		draggable:true,
-		animation: google.maps.Animation.BOUNCE,
-	});   
-	google.maps.event.addListener(marker, 'mouseout', updateXY); 
-}
-function updateXY()
-{	
-	latLng = marker.getPosition();
+	<script type="text/javascript">
+		<!--
+		var marker;
+		var latlng;
+		function initialize() 
+		{
+		      latlng = new google.maps.LatLng(51.5, 0.5);
+			var myOptions = {
+			  center: latlng,
+			  zoom: 8,
+			  mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			var map = new google.maps.Map(document.getElementById("mapCanvas"),
+			    myOptions);
+			marker = new google.maps.Marker({
+				position: latlng,
+				map: map,
+				title:"Grab and Drag Me!!",
+				draggable:true,
+				animation: google.maps.Animation.BOUNCE,
+			});   
+			google.maps.event.addListener(marker, 'mouseout', updateXY); 
+		}
+		function updateXY()
+		{	
+			latLng = marker.getPosition();
 
-	document.getElementById("location_lat").value=latLng.lat();
-	document.getElementById("location_long").value=latLng.lng(); 
-}
-function validate() 
-{
-	latLng = marker.getPosition();
-	document.getElementById("location_lat").value=latLng.lat();
-	document.getElementById("location_long").value=latLng.lng(); 
-}
-//-->
-</script>
+			document.getElementById("location_lat").value=latLng.lat();
+			document.getElementById("location_long").value=latLng.lng(); 
+		}
+		function validate() 
+		{
+			latLng = marker.getPosition();
+			document.getElementById("location_lat").value=latLng.lat();
+			document.getElementById("location_long").value=latLng.lng(); 
+		}
+		//-->
+	</script>
 <% end %>
 
 <h1>New location</h1>
+<p>
+	Drag the marker to select a location and add it to your map
+</p>
 <%= render 'form' %>
 
 <div id="mapCanvas"></div>
-<%= link_to 'Back', :controller => "home", :action => "location" %>

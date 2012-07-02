@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120412121134) do
+ActiveRecord::Schema.define(:version => 20120625224712) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id",                       :null => false
     t.integer  "friend_id",                     :null => false
     t.boolean  "confirmed",  :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "locations", :force => true do |t|
@@ -35,14 +35,14 @@ ActiveRecord::Schema.define(:version => 20120412121134) do
     t.string   "description", :null => false
     t.integer  "thred_id",    :null => false
     t.integer  "user_id",     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "storages", :force => true do |t|
     t.integer  "user_id",           :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20120412121134) do
     t.string   "description", :null => false
     t.integer  "topic_id",    :null => false
     t.integer  "user_id",     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "timelines", :force => true do |t|
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(:version => 20120412121134) do
     t.string   "description",       :null => false
     t.date     "date",              :null => false
     t.integer  "user_id",           :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
@@ -77,8 +77,13 @@ ActiveRecord::Schema.define(:version => 20120412121134) do
     t.string   "title",       :null => false
     t.string   "description", :null => false
     t.integer  "user_id",     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "user_sessions", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -96,8 +101,8 @@ ActiveRecord::Schema.define(:version => 20120412121134) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
     t.string   "email",                                              :null => false
     t.string   "status",              :default => "Inactive"
     t.string   "surname",                                            :null => false

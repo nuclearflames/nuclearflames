@@ -10,18 +10,44 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :Title %>:
-    <%= f.text_field :title %><br />
-    <%= f.label :Description %>:
-    <%= f.text_field :description %><br />
-    <%= f.label :Lat %>:
-    <%= f.text_field :lat, :readonly => "true" %><br />
-    <%= f.label :Long %>:
-    <%= f.text_field :long, :readonly => "true" %><br />
-  </div>
+<div id="newLocation">
+	<span>
+		<%= f.label :Title %>:
+	</span>
+	<span>
+		<%= f.text_field :title %>
+	</span>
 
-  <div class="actions">
-    <%= f.submit :onfocus => "validate();", :onmouseover => "validate();" %>
-  </div>
+
+	<span>
+		<%= f.label :Description %>:
+	</span>
+	<span>
+		<%= f.text_field :description %>
+	</span>
+
+
+	<span>    
+		<%= f.label :Lat %>:
+	</span>
+	<span>
+		<%= f.text_field :lat, :readonly => "true" %>
+	</span>
+
+
+	<span>
+		<%= f.label :Long %>:
+	</span>
+	<span>
+		<%= f.text_field :long, :readonly => "true" %>
+	</span>
+
+
+	<span>
+		  <div class="actions">
+		    <%= f.submit :onfocus => "validate();", :onmouseover => "validate();" %>
+		  </div>
+	</span>
+</div>
+
 <% end %>

@@ -27,12 +27,15 @@ function initialize()
 <% end %>
 
 <h1>Showing Location</h1>
-ID: <%= @location.id %><br />
-User ID: <%= @location.user.id %><br />
-Description: <%= @location.description %><br />
-Lattitude: <%= @location.lat %><br />
-Longnitude: <%= @location.long %><br />
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'locations', :controller => "home", :action => "location" %> |
-<%= link_to 'Destroy', location_path, :confirm => 'Are you sure?', :method => :delete %>
+<div id="column2">
+	ID: <%= @location.id %><br />
+	User ID: <%= @location.user.id %><br />
+	Description: <%= @location.description %><br />
+	Lattitude: <%= @location.lat %><br />
+	Longnitude: <%= @location.long %><br />
+	<%= link_to 'Delete', location_path, :confirm => 'Are you sure?', :method => :delete %> |
+	<%= link_to 'Edit', edit_location_path(@location) %> |
+	<%= link_to 'Visited Locations', :controller => "home", :action => "location" %>
+</div>
+
 <div id="mapCanvas"></div>

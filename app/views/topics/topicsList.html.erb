@@ -1,38 +1,44 @@
-<p> Welecome to the forum, here you can wiew all the different articles that people have posted about
+<p> 
+	Welecome to the forum, here you can wiew all the different articles that people have posted about
 </p>
-<h1>Topic List:</h1>
-<p>Here you can view all the topics that have been posted within our forum:</p>
+<h1>
+	Topic List:
+</h1>
+<p>
+	Here you can view all the topics that have been posted within our forum:
+</p>
 <table id="form">
-<tr>
-	<th colspan="2">
-	Topic:
-	</th>
-	<th colspan="2">
-	Options
-	</th>
-</tr>
-<% @topics.each do |topic| %>
-<tr>
-    <td><%= topic.id %></td>
-    <td><%= link_to topic.title, topic %><br /><%= topic.description %></td>
-    <td width="50px">
-	<%= link_to 'Owner', user_path(topic.user_id) %>
-    </td>
-    <% if topic.user_id == session[:id] %>
-    <td width="130px">
-    <%= link_to 'Edit your Topic', edit_topic_path(topic) %><br />
-    <%= link_to 'Delete your Topic', topic, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
-</tr>
-<% end %>
+	<tr>
+		<th colspan="2">
+			Topic:
+		</th>
+		<th colspan="2">
+			Options
+		</th>
+	</tr>
+	<% @topics.each do |topic| %>
+		<tr>
+			<td style="width:30px">
+				<%= topic.id %>
+			</td>
+			<td style="width:530px">
+				<%= link_to topic.title, topic %><br /><%= topic.description %></td>
+			<td>
+				<%= link_to "Creator", user_path(topic.user_id) %>
+			</td>
+				<% if topic.user_id == current_user %>
+					<td width="150px">
+						<%= link_to 'Edit your Topic', edit_topic_path(topic) %>
+						<br />
+						<%= link_to 'Delete your Topic', topic, :confirm => 'Are you sure?', :method => :delete %>
+					</td>				
+				<% end %>
+		</tr>
+	<% end %>
 </table>
-<br />
-<div id="newPost">
-<% if current_user %>
-    <%= link_to 'Create a New Topic', new_topic_path %></td>
 
-<!--
-<%= render 'form' %>
--->
+<% if current_user && current_user.status == "Administrator" %>
+	<div id="newPost">
+		<%= render 'form' %>
+	</div>
 <% end %>
-</div>
