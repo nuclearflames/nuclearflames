@@ -2,4 +2,4 @@
 db/*.sqlite3
 log/* .log
 tmp/
- .public/documents/* .sass-cache/* /config/s3.yml . public/assets/*
+ /public/documents/* .sass-cache/* /config/s3.yml .public/assets/*
