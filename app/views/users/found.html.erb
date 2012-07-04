@@ -1,30 +1,11 @@
-<h1>Listing users</h1>
+<h3>Users with forename containing: <%= params[:search] %></h3>
 
 <table>
-  <tr>
-    <th>ID</th>
-    <th>Surname</th>
-    <th>Firstname</th>
-    <th>Status</th>
-    <th>Rank</th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.id %></td>
-    <td><%= user.surname %></td>
-    <td><%= user.name %></td>
-    <td><%= user.status %></td>
-    <td><%= user.rank %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= user.name %></td>
+			<td><%= user.surname %></td>
+			<td><%= link_to 'View', user %></td>
+		</tr>
+	<% end %>
 </table>
-
-<br />
-
-<%= link_to 'New User (Without email activation)', new_user_path %>
- 
-</div>  

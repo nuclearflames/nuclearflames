@@ -37,13 +37,14 @@
     <%= f.label :"Confirm Email" %><br />
     <%= f.text_field :email_confirmation %>
   </div>
-  <% if session[:id] && @user1.status == "Administrator" %>
-  <div class="field" id="administrator">
-  <u>Admin Section</u>
-  <br />
-    <%= f.label :"Rank:" %><%= f.select(:rank, options_for_select([['5', '5'],['4', '4'],['3', '3'],['2', '2'],['1', '1'],['0', '0']])) %>
-    <%= f.label :"Status:" %><%= f.select(:status, options_for_select([['Administrator', 'Administrator'],['User', 'User'], ['Inactive', 'Inactive']])) %>
-  </div>
+  <% if current_user && @user1.status == "Administrator" %>
+	<div class="field" id="Useradministrator">
+		<u>Admin Section</u>
+		<br />
+		<%= f.label :"Rank:" %><%= f.select(:rank, options_for_select([['0', '0'],['5', '5'],['4', '4'],['3', '3'],['2', '2'],['1', '1']])) %>
+		<br />
+		<%= f.label :"Status:" %><%= f.select(:status, options_for_select([ ['Inactive', 'Inactive'], ['Administrator', 'Administrator'],['User', 'User']])) %>
+	</div>
   <% end %>
   <div class="actions">
     <%= f.submit "Create account" %>

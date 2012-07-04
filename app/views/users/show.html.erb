@@ -82,12 +82,11 @@
 
 <div id="timeline">
 	<h3>My Timeline:</h3>
-	<p>
 		<% dateValue = Date.today %>
 		<% int = 1 %>
+		<p>
 		Today: <%= dateValue %>
-		<br />
-	</p>
+		</p>
 	<% @timeline.each do |timeline| %>
 			<% if timeline.date < dateValue %>
 			<% dateValue = timeline.date %>
@@ -99,14 +98,14 @@
 			<br />
 			<% int += 1 %>
 	<% end %>
-	<p>
-		First Entry: <%= dateValue %>
+		<p>
+			First Entry: <%= dateValue %>
+		</p>
 		<% if current_user == @user %>
 			<p>
 				<%=h link_to 'Add to your timeline', new_timeline_path %>
 			</p>
 		<% end %>
-	</p>
 	<div id="friendsList">
 
 		<p>My Friends:</p>

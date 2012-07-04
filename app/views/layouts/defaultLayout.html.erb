@@ -1,12 +1,11 @@
-<html>
+<!DOCTYPE html>
 	<head>
 		<title>Nuclearflames</title>
 		<%= stylesheet_link_tag "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<script type="text/javascript"
-		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB3gx_9qaR1qczUh-vHg35EhzDYTtfwfNs&sensor=true">
+		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB3gx_9qaR1qczUh-vHg35EhzDYTtfwfNs&amp;sensor=true">
 		</script>
-	    
 		<% if current_user %>
 			<style type="text/css">
 			a,p,u,td {font-size: <%= current_user.size %>px; color:<%= current_user.color %>;font-family:<%= current_user.font %>; Arial, Comic Sans MS; }
@@ -15,30 +14,31 @@
 		<%= yield(:calendar) %>
 		<%= yield(:maps) %>
 		<%= csrf_meta_tag %>
-		<noscript>Please enable javascript to use this website fully</noscript>
 	</head>
+	<noscript>Your browser does not support JavaScript</noscript>
 	<body onload="initialize()">
 		<div id="header">
 			<span id="home">
-			<% if !current_user %>
-				<%= link_to "Home", :controller => "home", :action => "index" %> | 
-			<% else %>
-			<%= link_to "Home", :controller => "home", :action => "home" %> | 
-			<% end %>
-			<%= link_to "Forum", :controller => "topics", :action => "topicsList" %> |
-			<span onclick="goBackHistory()"><u>Go Back to Last Page</u></span>
+				<% if !current_user %>
+					<%= link_to "Home", :controller => "home", :action => "index" %> | 
+				<% else %>
+					<%= link_to "Home", :controller => "home", :action => "home" %> | 
+				<% end %>
+				<%= link_to "Forum", :controller => "topics", :action => "topicsList" %> |
+			<span onclick="goBackHistory()">
+				<u>Go Back to Last Page</u></span>
 			</span>
 			<span id="notice">
 				<%= notice %>
 			</span>
 			<span id="loggedin">
-			<% if current_user %>
-				You are logged in as: <%= link_to(current_user.name + " " + current_user.surname, user_path(current_user.id)) %><br />
-				<span id="logOff">Click here to <%= link_to('Logoff', '../../../logout' )%> 
-				<%=h image_tag current_user.photo.url(:thumb), :id=>"profilePic" %></span>
-			<% else %>
-				You are not logged in, <%= link_to "Log in", "../../../login" %> or  <%= link_to('Signup', '../../../users/new') %>
-			<% end %>
+				<% if current_user %>
+					You are logged in as: <%= link_to(current_user.name + " " + current_user.surname, user_path(current_user.id)) %><br />
+					<span id="logOff">Click here to <%= link_to('Logoff', '../../../logout' )%> 
+					<%=h image_tag current_user.photo.url(:thumb), :id=>"profilePic" %></span>
+				<% else %>
+					You are not logged in, <%= link_to "Log in", "../../../login" %> or  <%= link_to('Signup', '../../../users/new') %>
+				<% end %>
 			</span>
 		</div>
 		

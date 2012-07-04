@@ -13,7 +13,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-		Find a friend:
+		Find a friend by name <br /> (Case sensitive searching):
 			<%= form_tag ('users/' + current_user.id.to_s + '/found'), :method => 'get' do %>
 					<%= text_field_tag :search, params[:search] %>
 					<%= submit_tag "Search", :name => nil %>
