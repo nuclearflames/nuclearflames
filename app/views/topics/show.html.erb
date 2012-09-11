@@ -24,7 +24,7 @@
 		<td width="50px">
 			<%= link_to 'Owner', user_path(threads.user_id) %>
 		</td>
-		<% if threads.user_id == current_user.id %>
+		<% if current_user && threads.user_id == current_user.id %>
 			<td width="130px">
 				<%= link_to 'Edit your thread', edit_thred_path(threads) %><br />
 				<%= link_to 'Delete your thread', threads, :confirm => 'Are you sure?', :method => :delete %>

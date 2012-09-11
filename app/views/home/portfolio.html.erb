@@ -1,11 +1,11 @@
-<p>Listing Timelines:</p>
-<p>
-<% dateValue = Date.today %>
-<% int = 1 %>
-Today: <%= dateValue %>
-<br />
-</p>
-<div style="position:absolute; left:50px;width:400px;">
+<div id="timeline">
+	<p>Listing Timelines:</p>
+	<p>
+	<% dateValue = Date.today %>
+	<% int = 1 %>
+	Today: <%= dateValue %>
+	<br />
+	</p>
 	<% @timeline.each do |timeline| %>
 			<% if timeline.date < dateValue %>
 			<% dateValue = timeline.date %>
@@ -23,7 +23,7 @@ Today: <%= dateValue %>
 		<%=h link_to 'Add to your timeline', new_timeline_path %>
 	</p>
 </div>
-<div style="position:absolute;top:50px;right:250px;">
+<div id="storage">
 	<p>
 	<%= @user.name %>'s <b>Storage:</b><br />
 	</p>

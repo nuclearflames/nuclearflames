@@ -2,7 +2,7 @@
 	<head>
 		<title>Nuclearflames</title>
 		<%= stylesheet_link_tag "application", :media => "all" %>
-		<%= javascript_include_tag "application" %>
+		<%= javascript_include_tag :all %>
 		<script type="text/javascript"
 		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB3gx_9qaR1qczUh-vHg35EhzDYTtfwfNs&amp;sensor=true">
 		</script>
@@ -25,8 +25,9 @@
 					<%= link_to "Home", :controller => "home", :action => "home" %> | 
 				<% end %>
 				<%= link_to "Forum", :controller => "topics", :action => "topicsList" %> |
-			<span onclick="goBackHistory()">
-				<u>Go Back to Last Page</u></span>
+				<span onclick="goBackHistory()">
+					<u>Go Back to Last Page</u>
+				</span>
 			</span>
 			<span id="notice">
 				<%= notice %>
@@ -40,6 +41,7 @@
 					You are not logged in, <%= link_to "Log in", "../../../login" %> or  <%= link_to('Signup', '../../../users/new') %>
 				<% end %>
 			</span>
+			<%= notice %>
 		</div>
 		
 		<div id="content">
