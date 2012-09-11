@@ -25,7 +25,7 @@
 			<br />
 			<%=h posts.description %>
 		</td>
-		<% if posts.user_id == current_user.id %>
+		<% if current_user && posts.user_id == current_user.id %>
 			<td width="60px">
 			<%=h link_to 'Edit', edit_post_path(posts.id) %>
 			<br />
